@@ -1,0 +1,329 @@
+/**
+ * GENERATED FILE — DO NOT EDIT BY HAND.
+ * Source of truth: tokens/tokens.json
+ * Regenerate with: npm run tokens
+ */
+
+:root {
+  --color-primitive-homie-inkwell: #9178e6;
+  --color-primitive-homie-eyes: #0a0a0a;
+  --color-primitive-color-navy-800: #22242f;
+  --color-primitive-color-navy-900: #1a1c26;
+  --color-primitive-color-navy-950: #090c18;
+  --color-primitive-color-neutral-0: #ffffff;
+  --color-primitive-color-neutral-950: #0a0a0a;
+  --color-primitive-color-violet-50: #f4f2ff;
+  --color-primitive-color-violet-100: #e4e0ff;
+  --color-primitive-color-violet-200: #d2ccfa;
+  --color-primitive-color-violet-300: #a78bfa;
+  --color-primitive-color-violet-400: #7b65e0;
+  --color-primitive-color-violet-500: #9178e6;
+  --color-primitive-color-violet-900: #15103a;
+  --color-primitive-color-violet-950: #0e0a18;
+  --color-primitive-color-green-300: #4ae5b0;
+  --color-primitive-color-green-500: #00c386;
+  --color-primitive-color-green-900: #0a2e22;
+  --color-primitive-color-green-950: #0a1f18;
+  --color-primitive-color-red-200: #fca5a5;
+  --color-primitive-color-red-300: #ff8585;
+  --color-primitive-color-red-400: #ff6b6b;
+  --color-primitive-color-red-500: #e85555;
+  --color-primitive-color-red-900: #532831;
+  --color-primitive-color-red-950: #2a0808;
+  --color-primitive-color-coral-200: #ffb59b;
+  --color-primitive-color-coral-400: #fb7e5b;
+  --color-primitive-color-coral-900: #512e2c;
+  --color-primitive-color-coral-950: #2e0f06;
+  --color-primitive-color-blue-300: #7ba8f2;
+  --color-primitive-color-blue-400: #5fa0fc;
+  --color-primitive-color-blue-900: #0a1635;
+  --color-primitive-color-blue-950: #06173b;
+  --color-primitive-color-magenta-200: #f7b5de;
+  --color-primitive-color-magenta-400: #e879c0;
+  --color-primitive-color-magenta-900: #380d29;
+  --color-primitive-color-magenta-950: #2c0a20;
+  --color-primitive-color-gold-300: #fcd34d;
+  --color-primitive-color-gold-400: #f5b53d;
+  --color-primitive-color-gold-900: #3a2d0b;
+  --color-primitive-color-gold-950: #2a1d04;
+  --color-primitive-color-alpha-light-10: rgba(255, 255, 255, 0.10196078431372549);
+  --color-primitive-color-alpha-light-18: rgba(255, 255, 255, 0.1803921568627451);
+  --color-primitive-color-alpha-light-24: rgba(255, 255, 255, 0.23921568627450981);
+  --color-primitive-color-alpha-light-25: rgba(255, 255, 255, 0.25098039215686274);
+  --color-primitive-color-alpha-light-40: rgba(255, 255, 255, 0.4);
+  --color-primitive-color-alpha-light-48: rgba(245, 243, 255, 0.47843137254901963);
+  --color-primitive-color-alpha-light-68: rgba(245, 243, 255, 0.6784313725490196);
+  --color-primitive-color-alpha-dark-10: rgba(10, 10, 10, 0.10196078431372549);
+  --color-primitive-color-alpha-dark-50: rgba(10, 10, 10, 0.5019607843137255);
+  --color-primitive-color-alpha-glass-60: rgba(61, 61, 61, 0.6);
+  --color-primitive-color-clay-200: #e8c9bc;
+  --color-primitive-color-clay-400: #c99383;
+  --color-primitive-color-clay-900: #3a2620;
+  --color-primitive-color-clay-950: #2b1712;
+  --typography-primitive-size-2xs: 9px;
+  --typography-primitive-size-xs: 12px;
+  --typography-primitive-size-sm: 15px;
+  --typography-primitive-size-md: 18px;
+  --typography-primitive-size-lg: 21px;
+  --typography-primitive-size-xl: 28px;
+  --typography-primitive-size-2xl: 33px;
+  --typography-primitive-size-3xl: 44px;
+  --typography-primitive-size-4xl: 59px;
+  --typography-primitive-size-5xl: 76px;
+  --typography-primitive-size-6xl: 103px;
+  --typography-primitive-size-root: 16px;
+  --typography-primitive-line-height-2xs: 12px;
+  --typography-primitive-line-height-xs: 16px;
+  --typography-primitive-line-height-sm: 20px;
+  --typography-primitive-line-height-md: 24px;
+  --typography-primitive-line-height-lg: 28px;
+  --typography-primitive-line-height-xl: 36px;
+  --typography-primitive-line-height-2xl: 44px;
+  --typography-primitive-line-height-3xl: 60px;
+  --typography-primitive-line-height-4xl: 76px;
+  --typography-primitive-line-height-5xl: 104px;
+  --typography-primitive-tracking-tight: -1%;
+  --typography-primitive-tracking-none: 0%;
+  --typography-primitive-tracking-loose: 1%;
+  --typography-primitive-family-display: 'Greed Standard-TRIAL';
+  --typography-primitive-family-default: 'Greed Standard-TRIAL';
+  --typography-primitive-weight-regular: 400;
+  --typography-primitive-weight-semibold: 600;
+  --typography-primitive-weight-bold: 700;
+  --typography-primitive-weight-heavy: 900;
+  --size-space-0: 0px;
+  --size-space-100: 4px;
+  --size-space-150: 6px;
+  --size-space-200: 8px;
+  --size-space-300: 12px;
+  --size-space-400: 16px;
+  --size-space-600: 24px;
+  --size-space-700: 28px;
+  --size-space-800: 32px;
+  --size-space-1200: 48px;
+  --size-space-1600: 64px;
+  --size-space-2400: 96px;
+  --size-space-4000: 160px;
+  --size-space-050: 2px;
+  --size-space-negative-100: -4px;
+  --size-space-negative-200: -8px;
+  --size-space-negative-300: -12px;
+  --size-space-negative-400: -16px;
+  --size-space-negative-600: -24px;
+  --size-radius-100: 4px;
+  --size-radius-150: 6px;
+  --size-radius-200: 8px;
+  --size-radius-400: 16px;
+  --size-radius-600: 24px;
+  --size-radius-800: 32px;
+  --size-radius-900: 36px;
+  --size-radius-full: 9999px;
+  --size-stroke-border: 1px;
+  --size-stroke-heavy-border: 2px;
+  --size-icon-100: 8px;
+  --size-icon-150: 12px;
+  --size-icon-200: 16px;
+  --size-icon-250: 20px;
+  --size-icon-300: 24px;
+  --size-icon-400: 32px;
+  --size-illustration-500: 40px;
+  --size-illustration-800: 64px;
+  --size-illustration-1500: 120px;
+  --size-illustration-2500: 200px;
+  --size-illustration-4000: 320px;
+  --size-layout-content-width: 358px;
+  --responsive-desktop-device: desktop;
+  --responsive-desktop-devicewidth: 1200px;
+  --responsive-desktop-scale: 1;
+  --responsive-mobile-device: mobile;
+  --responsive-mobile-devicewidth: 375px;
+  --responsive-mobile-scale: 1.25;
+  --responsive-tablet-device: tablet;
+  --responsive-tablet-devicewidth: 768px;
+  --responsive-tablet-scale: 1;
+  --motion-duration-quick: 120ms; /** 120ms duration for micro-feedback tied to a direct action like a tap or toggle. */
+  --motion-duration-standard: 240ms; /** 240ms duration for most state transitions and enter/exit motion. */
+  --motion-duration-deliberate: 400ms; /** 400ms duration for large-surface transitions like full-screen modals. */
+  --motion-easing-standard: cubic-bezier(0.4, 0, 0.2, 1); /** Default ease-in-out curve for most in-place transitions. */
+  --motion-easing-decelerate: cubic-bezier(0, 0, 0.2, 1); /** Ease-out curve for elements entering the screen. */
+  --motion-easing-accelerate: cubic-bezier(0.4, 0, 1, 1); /** Ease-in curve for elements leaving the screen. */
+  --color-background-page: var(--color-primitive-color-navy-950); /** Base background for every screen. */
+  --color-background-surface: var(--color-primitive-color-navy-800); /** Fill for elevated containers like cards, sheets, and modals. */
+  --color-background-inverse: var(--color-primitive-color-violet-50); /** Light chrome color for status-bar icons and snackbar surfaces in this dark-only app. */
+  --color-background-scrim: var(--color-primitive-color-alpha-dark-50); /** Semi-transparent overlay dimming content behind a modal or sheet. */
+  --color-background-floating: var(--color-primitive-color-alpha-glass-60); /** Translucent fill for dropdowns, tooltips, and popovers that float above content. */
+  --color-background-stacking: var(--color-primitive-color-alpha-light-10); /** Additive white layer giving toasts and snackbars subtle lift above dark surfaces. */
+  --color-background-input: var(--color-primitive-color-navy-900); /** Fill for an editable field at rest. */
+  --color-interactive-primary: var(--color-primitive-color-violet-50); /** Fill for the one primary call-to-action button on a screen. */
+  --color-interactive-secondary: var(--color-primitive-color-alpha-light-10); /** Fill for supporting actions like Skip, Cancel, chips, and toggles. */
+  --color-interactive-destructive: var(--color-primitive-color-red-400); /** Fill for irreversible harmful actions like delete or remove. */
+  --color-interactive-disabled: var(--color-primitive-color-alpha-light-10); /** Fill for a non-interactive control signaling it's unavailable. */
+  --color-interactive-on-primary: var(--color-primitive-color-navy-950); /** Text and icon color for content sitting on interactive.primary. */
+  --color-interactive-on-secondary: var(--color-primitive-color-violet-50); /** Text and icon color for content sitting on interactive.secondary. */
+  --color-interactive-pressed: var(--color-primitive-color-alpha-light-10); /** Press overlay for tap feedback on light or vivid surfaces. */
+  --color-interactive-pressed-inverse: var(--color-primitive-color-alpha-dark-10); /** Press overlay for tap feedback on dark surfaces. */
+  --color-interactive-primary-hover: var(--color-primitive-color-violet-100); /** Deprecated hover fill, unused on this touch-only product. */
+  --color-interactive-primary-active: var(--color-primitive-color-violet-200); /** Deprecated solid pressed-state fill, replaced by the interactive.pressed overlay. */
+  --color-interactive-secondary-hover: var(--color-primitive-color-alpha-light-18); /** Deprecated hover fill, unused on this touch-only product. */
+  --color-interactive-secondary-active: var(--color-primitive-color-alpha-light-24); /** Deprecated solid pressed-state fill, replaced by the interactive.pressedInverse overlay. */
+  --color-interactive-destructive-hover: var(--color-primitive-color-red-300); /** Deprecated hover fill, unused on this touch-only product. */
+  --color-interactive-destructive-active: var(--color-primitive-color-red-500); /** Pressed-state fill for interactive.destructive. */
+  --color-interactive-on-destructive: var(--color-primitive-color-red-950); /** Text and icon color for content sitting on interactive.destructive. */
+  --color-text-primary: var(--color-primitive-color-violet-50); /** Highest-contrast text for headlines, body copy, and titles. */
+  --color-text-secondary: var(--color-primitive-color-alpha-light-68); /** Reduced-emphasis text for subtitles, captions, and helper text. */
+  --color-text-inverse: var(--color-primitive-color-navy-950); /** Dark text for use on light or vivid surfaces like background.inverse. */
+  --color-text-link: var(--color-primitive-color-violet-500); /** Text color for inline hyperlinks only. */
+  --color-text-disabled: var(--color-primitive-color-alpha-light-24); /** Dimmed text marking a control as disabled, since it shares its fill with interactive.secondary. */
+  --color-text-tertiary: var(--color-primitive-color-alpha-light-48); /** Lowest-emphasis readable text for timestamps and inline hints. */
+  --color-text-link-hover: var(--color-primitive-color-violet-300); /** Deprecated hover text color, unused on this touch-only product. */
+  --color-text-success: var(--color-primitive-color-green-300); /** Confirmation text for messages like 'Correct'. */
+  --color-text-error: var(--color-primitive-color-red-200); /** Validation message text under a failed field. */
+  --color-text-warning: var(--color-primitive-color-gold-300); /** Caution text for limits and expiry notices. */
+  --color-text-on-accent: var(--color-primitive-color-violet-950); /** Text color for content sitting on any accent.*.bold fill. */
+  --color-border-default: var(--color-primitive-color-alpha-light-10); /** Standard edge for card outlines, dividers, and resting input borders. */
+  --color-border-strong: var(--color-primitive-color-alpha-light-25); /** Higher-contrast edge for dividers and rules that must read at a glance. */
+  --color-border-focus: var(--color-primitive-color-violet-300); /** Visible keyboard focus ring for any focusable element. */
+  --color-border-error: var(--color-primitive-color-red-400); /** Edge color for a text field or select that failed validation. */
+  --color-border-success: var(--color-primitive-color-green-500); /** Edge color for a field confirmed correct. */
+  --color-border-selected: var(--color-primitive-color-violet-500); /** Edge color for a chosen element like a selected card or answer. */
+  --color-mascot-primary: var(--color-primitive-color-violet-500); /** Signature violet for the Homie mascot, used only where the mascot is present. */
+  --color-mascot-eyes: var(--color-primitive-color-neutral-0); /** Homie's eye whites, for the mascot illustration only. */
+  --color-mascot-pupils: var(--color-primitive-color-neutral-950); /** Homie's pupils, for the mascot illustration only. */
+  --color-pro-bold: var(--color-primitive-color-gold-400); /** Solid fill for PRO badges and upgrade banners. */
+  --color-pro-on-bold: var(--color-primitive-color-gold-950); /** Text and icon color for content sitting on pro.bold. */
+  --color-pro-subtle: var(--color-primitive-color-gold-900); /** Low-emphasis tinted fill for PRO surfaces. */
+  --color-pro-on-subtle: var(--color-primitive-color-gold-300); /** Text and icon color for content sitting on pro.subtle. */
+  --color-pro-accent: var(--color-primitive-color-gold-400); /** Deprecated duplicate of pro.bold, kept only so old references don't break. */
+  --color-accent-brand-bold: var(--color-primitive-color-violet-500); /** Solid brand violet fill for brand moments and onboarding hero panels. */
+  --color-accent-brand-on-bold: var(--color-primitive-color-violet-950); /** Text and icon color for content sitting on accent.brand.bold. */
+  --color-accent-brand-subtle: var(--color-primitive-color-violet-900); /** Low-emphasis tinted brand fill for tinted brand panels. */
+  --color-accent-brand-on-subtle: var(--color-primitive-color-violet-400); /** Text and icon color for content sitting on accent.brand.subtle. */
+  --color-accent-coral-bold: var(--color-primitive-color-coral-400); /** Solid coral fill for decorative emphasis and category tags. */
+  --color-accent-coral-on-bold: var(--color-primitive-color-coral-950); /** Text and icon color for content sitting on accent.coral.bold. */
+  --color-accent-coral-subtle: var(--color-primitive-color-coral-900); /** Low-emphasis tinted coral fill. */
+  --color-accent-coral-on-subtle: var(--color-primitive-color-coral-200); /** Text and icon color for content sitting on accent.coral.subtle. */
+  --color-accent-magenta-bold: var(--color-primitive-color-magenta-400); /** Solid magenta fill for decorative category tags. */
+  --color-accent-magenta-on-bold: var(--color-primitive-color-magenta-950); /** Text and icon color for content sitting on accent.magenta.bold. */
+  --color-accent-magenta-subtle: var(--color-primitive-color-magenta-900); /** Low-emphasis tinted magenta fill. */
+  --color-accent-magenta-on-subtle: var(--color-primitive-color-magenta-200); /** Text and icon color for content sitting on accent.magenta.subtle. */
+  --color-accent-blue-bold: var(--color-primitive-color-blue-400); /** Solid blue fill for informational and secondary category chips. */
+  --color-accent-blue-on-bold: var(--color-primitive-color-blue-950); /** Text and icon color for content sitting on accent.blue.bold. */
+  --color-accent-blue-subtle: var(--color-primitive-color-blue-900); /** Low-emphasis tinted blue fill. */
+  --color-accent-blue-on-subtle: var(--color-primitive-color-blue-300); /** Text and icon color for content sitting on accent.blue.subtle. */
+  --color-accent-green-bold: var(--color-primitive-color-green-500); /** Solid green fill for streak counters, progress markers, and positive stat chips. */
+  --color-accent-green-on-bold: var(--color-primitive-color-green-950); /** Text and icon color for content sitting on accent.green.bold. */
+  --color-accent-green-subtle: var(--color-primitive-color-green-900); /** Low-emphasis tinted green fill behind a green stat or chip. */
+  --color-accent-green-on-subtle: var(--color-primitive-color-green-300); /** Text and icon color for content sitting on accent.green.subtle. */
+  --color-feedback-success-bold: var(--color-primitive-color-green-500); /** Solid fill for correct-answer banners and completion states. */
+  --color-feedback-success-on-bold: var(--color-primitive-color-green-950); /** Text and icon color for content sitting on feedback.success.bold. */
+  --color-feedback-success-subtle: var(--color-primitive-color-green-900); /** Tinted background behind a correct result. */
+  --color-feedback-success-on-subtle: var(--color-primitive-color-green-300); /** Text and icon color for content sitting on feedback.success.subtle. */
+  --color-feedback-error-bold: var(--color-primitive-color-red-400); /** Solid fill for incorrect-answer banners and failed validation summaries. */
+  --color-feedback-error-on-bold: var(--color-primitive-color-red-950); /** Text and icon color for content sitting on feedback.error.bold. */
+  --color-feedback-error-subtle: var(--color-primitive-color-red-900); /** Tinted background behind a wrong result. */
+  --color-feedback-error-on-subtle: var(--color-primitive-color-red-200); /** Text and icon color for content sitting on feedback.error.subtle. */
+  --color-feedback-partial-bold: var(--color-primitive-color-clay-400); /** Solid fill for partial-credit result banners. */
+  --color-feedback-partial-on-bold: var(--color-primitive-color-clay-950); /** Text and icon color for content sitting on feedback.partial.bold. */
+  --color-feedback-partial-subtle: var(--color-primitive-color-clay-900); /** Tinted background behind a partial-credit result. */
+  --color-feedback-partial-on-subtle: var(--color-primitive-color-clay-200); /** Text and icon color for content sitting on feedback.partial.subtle. */
+  --color-highlight-surface: var(--color-primitive-color-violet-900); /** Fill for a chosen element like a selected card or picked answer. */
+  --color-highlight-border: var(--color-primitive-color-violet-400); /** Deprecated edge color for a selected element, replaced by border.selected. */
+  --typography-text-style-display-l-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-display-l-font-weight: var(--typography-primitive-weight-heavy);
+  --typography-text-style-display-l-font-size: var(--typography-primitive-size-6xl);
+  --typography-text-style-display-l-line-height: var(--typography-primitive-line-height-5xl);
+  --typography-text-style-display-l-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-display-m-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-display-m-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-display-m-font-size: var(--typography-primitive-size-5xl);
+  --typography-text-style-display-m-line-height: var(--typography-primitive-line-height-4xl);
+  --typography-text-style-display-m-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-display-s-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-display-s-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-display-s-font-size: var(--typography-primitive-size-4xl);
+  --typography-text-style-display-s-line-height: var(--typography-primitive-line-height-3xl);
+  --typography-text-style-display-s-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-headline-xl-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-xl-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-headline-xl-font-size: var(--typography-primitive-size-3xl);
+  --typography-text-style-headline-xl-line-height: var(--typography-primitive-line-height-2xl);
+  --typography-text-style-headline-xl-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-headline-l-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-l-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-headline-l-font-size: var(--typography-primitive-size-2xl);
+  --typography-text-style-headline-l-line-height: var(--typography-primitive-line-height-xl);
+  --typography-text-style-headline-l-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-headline-m-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-m-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-headline-m-font-size: var(--typography-primitive-size-xl);
+  --typography-text-style-headline-m-line-height: var(--typography-primitive-line-height-lg);
+  --typography-text-style-headline-m-letter-spacing: var(--typography-primitive-tracking-tight);
+  --typography-text-style-headline-s-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-s-font-weight: var(--typography-primitive-weight-bold);
+  --typography-text-style-headline-s-font-size: var(--typography-primitive-size-lg);
+  --typography-text-style-headline-s-line-height: var(--typography-primitive-line-height-md);
+  --typography-text-style-headline-s-letter-spacing: var(--typography-primitive-tracking-none);
+  --typography-text-style-headline-xs-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-xs-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-headline-xs-bold-font-size: var(--typography-primitive-size-md);
+  --typography-text-style-headline-xs-bold-line-height: var(--typography-primitive-line-height-sm);
+  --typography-text-style-headline-xs-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-headline-xs-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-xs-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-headline-xs-regular-font-size: var(--typography-primitive-size-md);
+  --typography-text-style-headline-xs-regular-line-height: var(--typography-primitive-line-height-sm);
+  --typography-text-style-headline-xs-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-headline-xxs-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-xxs-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-headline-xxs-bold-font-size: var(--typography-primitive-size-sm);
+  --typography-text-style-headline-xxs-bold-line-height: var(--typography-primitive-line-height-xs);
+  --typography-text-style-headline-xxs-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-headline-xxs-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-headline-xxs-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-headline-xxs-regular-font-size: var(--typography-primitive-size-sm);
+  --typography-text-style-headline-xxs-regular-line-height: var(--typography-primitive-line-height-xs);
+  --typography-text-style-headline-xxs-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-body-m-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-body-m-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-body-m-bold-font-size: var(--typography-primitive-size-md);
+  --typography-text-style-body-m-bold-line-height: var(--typography-primitive-line-height-md);
+  --typography-text-style-body-m-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-body-m-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-body-m-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-body-m-regular-font-size: var(--typography-primitive-size-md);
+  --typography-text-style-body-m-regular-line-height: var(--typography-primitive-line-height-md);
+  --typography-text-style-body-m-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-body-s-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-body-s-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-body-s-bold-font-size: var(--typography-primitive-size-sm);
+  --typography-text-style-body-s-bold-line-height: var(--typography-primitive-line-height-sm);
+  --typography-text-style-body-s-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-body-s-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-body-s-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-body-s-regular-font-size: var(--typography-primitive-size-sm);
+  --typography-text-style-body-s-regular-line-height: var(--typography-primitive-line-height-sm);
+  --typography-text-style-body-s-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-caption-m-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-caption-m-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-caption-m-bold-font-size: var(--typography-primitive-size-xs);
+  --typography-text-style-caption-m-bold-line-height: var(--typography-primitive-line-height-xs);
+  --typography-text-style-caption-m-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-caption-m-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-caption-m-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-caption-m-regular-font-size: var(--typography-primitive-size-xs);
+  --typography-text-style-caption-m-regular-line-height: var(--typography-primitive-line-height-xs);
+  --typography-text-style-caption-m-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-caption-s-bold-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-caption-s-bold-font-weight: var(--typography-primitive-weight-semibold);
+  --typography-text-style-caption-s-bold-font-size: var(--typography-primitive-size-2xs);
+  --typography-text-style-caption-s-bold-line-height: var(--typography-primitive-line-height-2xs);
+  --typography-text-style-caption-s-bold-letter-spacing: var(--typography-primitive-tracking-loose);
+  --typography-text-style-caption-s-regular-font-family: var(--typography-primitive-family-default);
+  --typography-text-style-caption-s-regular-font-weight: var(--typography-primitive-weight-regular);
+  --typography-text-style-caption-s-regular-font-size: var(--typography-primitive-size-2xs);
+  --typography-text-style-caption-s-regular-line-height: var(--typography-primitive-line-height-2xs);
+  --typography-text-style-caption-s-regular-letter-spacing: var(--typography-primitive-tracking-loose);
+  --responsive-desktop-rootfontsize: var(--typography-primitive-size-root);
+  --responsive-mobile-rootfontsize: var(--typography-primitive-size-root);
+  --responsive-tablet-rootfontsize: var(--typography-primitive-size-root);
+}
