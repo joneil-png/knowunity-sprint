@@ -1,0 +1,197 @@
+/*
+ * Shared layout for the Foundations stories (Colors, Type, Spacing, Radius).
+ * Visual values here (page padding, card gaps) are Storybook chrome, not
+ * product UI, so they intentionally don't reach into tokens/tokens.json.
+ */
+
+.foundations-page {
+  min-height: 100%;
+  padding: 32px;
+  background: var(--color-background-page);
+  color: var(--color-text-primary);
+  font-family: var(--typography-primitive-family-default), sans-serif;
+}
+
+.foundations-section {
+  margin-bottom: 40px;
+}
+
+.foundations-section-title {
+  font-family: var(--typography-primitive-family-default), sans-serif;
+  font-size: 18px;
+  font-weight: var(--typography-primitive-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: var(--size-stroke-border) solid var(--color-border-default);
+}
+
+.foundations-page code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Colors */
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.color-card {
+  border: var(--size-stroke-border) solid var(--color-border-default);
+  border-radius: var(--size-radius-200);
+  overflow: hidden;
+  background: var(--color-background-surface);
+}
+
+.color-swatch {
+  height: 72px;
+  border-bottom: var(--size-stroke-border) solid var(--color-border-default);
+  /* Checkerboard so translucent alpha tokens show their transparency
+     instead of just blending flat into the card background. */
+  background-image:
+    linear-gradient(45deg, #808080 25%, transparent 25%),
+    linear-gradient(-45deg, #808080 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #808080 75%),
+    linear-gradient(-45deg, transparent 75%, #808080 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+}
+
+.color-swatch-fill {
+  width: 100%;
+  height: 100%;
+}
+
+.color-card-body {
+  padding: 12px;
+}
+
+.token-name {
+  display: block;
+  font-size: 13px;
+  font-weight: var(--typography-primitive-weight-semibold);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.token-css-var {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+  word-break: break-word;
+}
+
+.token-value {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+}
+
+.token-description {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.token-description--missing {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Type */
+
+.type-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 20px 0;
+  border-bottom: var(--size-stroke-border) solid var(--color-border-default);
+}
+
+.type-row:last-child {
+  border-bottom: none;
+}
+
+.type-sample {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--color-text-primary);
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.type-meta {
+  flex: 0 0 220px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.type-meta .token-name {
+  font-size: 13px;
+}
+
+/* Spacing */
+
+.spacing-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.spacing-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.spacing-label {
+  flex: 0 0 260px;
+}
+
+.spacing-bar-track {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+
+.spacing-bar {
+  height: 20px;
+  background: var(--color-accent-brand-bold);
+  border-radius: var(--size-radius-100);
+  min-width: 2px;
+}
+
+/* Radius */
+
+.radius-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 24px;
+}
+
+.radius-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.radius-box {
+  width: 96px;
+  height: 96px;
+  background: var(--color-accent-brand-subtle);
+  border: var(--size-stroke-heavy-border) solid var(--color-accent-brand-bold);
+}

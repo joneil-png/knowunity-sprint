@@ -22,6 +22,10 @@ Prototype of a voice-based active-recall study step for Knowunity, built in this
 - Never hand-edit `next-env.d.ts` — Next regenerates it.
 - Never hand-edit `build/css/tokens.css` — it's generated. Edit `tokens/tokens.json` and run `npm run tokens`.
 
+## Component library
+
+When working on UI, use the storybook tools to read the component library before answering or writing anything. Never assume a component prop exists. Query the documentation, and use only props that are documented or shown in a story. If a prop isn't there, stop and ask me.
+
 ## File map
 
 **Root config** — read only when touching build/lint/TS setup:
