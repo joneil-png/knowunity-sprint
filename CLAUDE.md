@@ -20,6 +20,7 @@ Prototype of a voice-based active-recall study step for Knowunity, built in this
 - Never label a recall miss "Wrong"/"Incorrect", never grey out a control as the only response to something a student can't do — `docs/design-system.md` §4.
 - Never edit or strip the `nextjs-agent-rules` block in `AGENTS.md` — `next dev` regenerates it.
 - Never hand-edit `next-env.d.ts` — Next regenerates it.
+- Never hand-edit `build/css/tokens.css` — it's generated. Edit `tokens/tokens.json` and run `npm run tokens`.
 
 ## File map
 
