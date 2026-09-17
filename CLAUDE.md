@@ -11,6 +11,7 @@ Prototype of a voice-based active-recall study step for Knowunity, built in this
 - Voice-UX principles to apply to any recall-loop screen: `docs/voice-ux-reference.md`.
 - Recall-loop decisions already made: `docs/sprint-context.md`. Treat as settled, not open for redesign.
 - Four skills live in `.claude/skills/` (interactive-prototype, ui-designer, ux-designer, ux-motion), each owning its domain. Read the matching `SKILL.md` before doing that kind of work; each one states its own handoffs to the others.
+- The UI font is Greed VF, loaded via `next/font/local` in the root layout — never treat it as an installed system font.
 
 ## Never
 

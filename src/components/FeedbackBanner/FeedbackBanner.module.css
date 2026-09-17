@@ -1,0 +1,127 @@
+/*
+ * Every color, spacing, radius, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ * See FeedbackBanner.tsx for the one flagged exception (the tone icons,
+ * which have no retrievable vector asset).
+ */
+
+.banner {
+  /* "Set the instance to fill its slot" (Figma description) — fluid width
+     rather than the fixed 358px shown in the isolated Figma canvas, which
+     is Layout/Content Width (size.layout.content-width) resolved for a
+     390px screen with 16px side margins, not a hardcoded card width. */
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-300);
+  padding: var(--size-space-400);
+  border-radius: var(--size-radius-400);
+  animation: feedback-banner-enter var(--motion-duration-standard) var(--motion-easing-decelerate);
+}
+
+@keyframes feedback-banner-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-space-200));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* "Under reduced motion, fade only." (Success annotation, verbatim) */
+  .banner {
+    animation-name: feedback-banner-enter-reduced;
+  }
+
+  @keyframes feedback-banner-enter-reduced {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--size-space-200);
+}
+
+/* Sizing lives in <IconSlot>. This class has no rules of its own — it's
+   passed to IconSlot as a hook so `.success .icon` etc. below can still
+   color the icon via the same selector pattern used for `.title`. */
+
+.title {
+  margin: 0;
+  font-family: var(--typography-text-style-headline-s-font-family);
+  font-weight: var(--typography-text-style-headline-s-font-weight);
+  font-size: var(--typography-text-style-headline-s-font-size);
+  line-height: var(--typography-text-style-headline-s-line-height);
+  letter-spacing: var(--typography-text-style-headline-s-letter-spacing);
+}
+
+.body {
+  margin: 0;
+  font-family: var(--typography-text-style-body-s-regular-font-family);
+  font-weight: var(--typography-text-style-body-s-regular-font-weight);
+  font-size: var(--typography-text-style-body-s-regular-font-size);
+  line-height: var(--typography-text-style-body-s-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-s-regular-letter-spacing);
+}
+
+.answer {
+  margin: 0;
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
+}
+
+/* Success */
+.success {
+  background: var(--color-feedback-success-subtle);
+}
+
+.success .icon,
+.success .title {
+  color: var(--color-feedback-success-on-subtle);
+}
+
+.success .body {
+  color: var(--color-text-primary);
+}
+
+/* Earned — the bold/proof-of-mastery fill. Body text is
+   feedback/success/onBold here specifically because text/primary fails
+   contrast on this fill at 2.08:1 (Earned annotation, verbatim). */
+.earned {
+  background: var(--color-feedback-success-bold);
+}
+
+.earned .icon,
+.earned .title,
+.earned .body {
+  color: var(--color-feedback-success-on-bold);
+}
+
+/* Partial */
+.partial {
+  background: var(--color-feedback-partial-subtle);
+}
+
+.partial .icon,
+.partial .title,
+.partial .answer {
+  color: var(--color-feedback-partial-on-subtle);
+}
+
+.partial .body {
+  color: var(--color-text-primary);
+}

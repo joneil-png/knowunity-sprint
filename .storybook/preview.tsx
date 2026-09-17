@@ -29,6 +29,23 @@ const preview: Preview = {
       },
     },
 
+    // The product is mobile-iOS-only, so the viewport addon offers a
+    // single 390px iPhone 13/14 canvas instead of the desktop/tablet
+    // sizes it ships with by default. (The addon's default option set,
+    // MINIMAL_VIEWPORTS, doesn't include the built-in "iphone13" preset,
+    // so pointing initialGlobals at that key alone silently fell back to
+    // its own first default, "Small mobile" at 320px — this replaces the
+    // option set so the 390px default actually resolves.)
+    viewport: {
+      options: {
+        mobile: {
+          name: 'iPhone 13/14',
+          styles: { width: '390px', height: '844px' },
+          type: 'mobile',
+        },
+      },
+    },
+
     // "Documentation" (docs/autodocs) pages render their stories inline in
     // the page, not inside the viewport-constrained canvas iframe, so they
     // naturally use the full page width — useful for something like a page
@@ -43,7 +60,7 @@ const preview: Preview = {
     backgrounds: { value: 'dark' },
     // iPhone 13/14-width canvas (390px) as the default for individual
     // component stories, since this product is mobile-iOS-only.
-    viewport: { value: 'iphone13' },
+    viewport: { value: 'mobile' },
   },
 };
 

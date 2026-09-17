@@ -1,0 +1,112 @@
+/*
+ * Every color, spacing, radius, and motion value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ * See ButtonRecord.tsx for the flagged exceptions (icon glyphs, press-scale
+ * amount, pulse-ring size/opacity/duration) that have no backing token or
+ * asset — all called out by name in Figma's own GAPS note.
+ */
+
+.button {
+  /* 88px comes entirely from tokens: Icon/400 (32px) plus Space/700 (28px)
+     padding on each side — no fixed size set anywhere, unlike the regular
+     button, so there's nothing to approximate here. The stroke is an inset
+     box-shadow rather than a real `border`: Figma's stroke is
+     strokeAlign: INSIDE (doesn't add to the frame's 88px box), but a CSS
+     `border` always adds to an auto-sized element's rendered size — that
+     was rendering this at 90px before. box-shadow paints without affecting
+     layout, which matches Figma's behavior instead. */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-space-700);
+  border: none;
+  border-radius: var(--size-radius-full);
+  box-shadow: inset 0 0 0 var(--size-stroke-border) var(--color-border-default);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-duration-standard) var(--motion-easing-standard),
+    transform var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.default {
+  background: var(--color-interactive-primary);
+  color: var(--color-interactive-on-primary);
+}
+
+.recording {
+  background: var(--color-accent-brand-bold);
+  color: var(--color-accent-brand-on-bold);
+}
+
+/* Press feedback — "subtle scale down on press, back on release... No
+   color change. Scale value has no token yet" (Figma annotation, both
+   states). 0.96 is a placeholder pick, flagged per that gap. */
+.button:active {
+  transform: scale(0.96);
+}
+
+/* Standard visually-hidden pattern for the "announce the change to
+   recording" requirement (Recording annotation, verbatim) — screen-reader
+   only text, not a design value, so it isn't token-sourced. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Pulse rings — Recording only. Figma: "two outline rings centered on the
+   button, accent/brand/bold stroke at Stroke/Border, looping. Sizes,
+   opacity and loop duration have no tokens yet, agree them before
+   building." Built as a flagged placeholder per that note: two rings via
+   ::before/::after, staggered by half the loop duration, expanding and
+   fading out. None of the ring geometry/timing values below are tokens. */
+.recording::before,
+.recording::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--size-stroke-border) solid var(--color-accent-brand-bold);
+  border-radius: var(--size-radius-full);
+  opacity: 0;
+  animation: button-record-pulse 2s ease-out infinite;
+}
+
+.recording::after {
+  animation-delay: 1s;
+}
+
+@keyframes button-record-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* "Reduced motion: rings don't animate. Violet fill and stop glyph
+     carry the status." (Figma annotation, Recording state) */
+  .recording::before,
+  .recording::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .button {
+    transition: background-color var(--motion-duration-standard) var(--motion-easing-standard);
+  }
+
+  .button:active {
+    transform: none;
+  }
+}

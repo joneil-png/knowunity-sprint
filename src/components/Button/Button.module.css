@@ -1,0 +1,188 @@
+/*
+ * Every color, spacing, radius, type, and motion value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ * See Button.tsx for the two documented exceptions (the loading-spinner
+ * glyph and its rotation speed) that have no backing token or asset.
+ */
+
+/*
+ * Matches Figma's actual two-layer structure: an outer touch-target frame
+ * (this element — no visible fill, just a minimum 48px hit area) around an
+ * inner pill that carries all the visible styling. Collapsing these into
+ * one element was an earlier bug: the 48px minimum ended up forcing every
+ * size's *visible* pill to the same height instead of just padding out the
+ * hit area around a smaller pill.
+ */
+.hitArea {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--size-space-1200);
+  min-height: var(--size-space-1200);
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.hitArea:disabled {
+  cursor: not-allowed;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--size-radius-full);
+  transition: background-color var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.hitArea:focus-visible .pill {
+  outline: var(--size-stroke-heavy-border) solid var(--color-border-focus);
+  outline-offset: var(--size-stroke-heavy-border);
+}
+
+/* Pressed overlay — Figma's interactive/pressed token (a 10%-white wash)
+   painted on top of the fill. Real component: on Primary this is nearly
+   invisible against the already-light fill, and on Secondary Figma's own
+   paint order buries an equivalent overlay UNDER the opaque fill so it
+   never shows at all — both are known gaps (see design-system.md §3's
+   pressed/pressedInverse note). This implements the token's intent
+   (visible on top) for every variant rather than reproducing the broken
+   stacking, so Pressed always gives at least the intended feedback. */
+.pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-interactive-pressed);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.hitArea:active:not(:disabled) .pill::after {
+  opacity: 1;
+}
+
+/* Sizes — padding-block is half of padding-inline at every step, so the
+   pill's height is content-and-padding driven rather than a hardcoded
+   number. Figma fixes the pill at 32/40/56px, which aren't themselves
+   token values (32 is size.space.800, but 40 and 56 match no space
+   token), so this lands close (a few px) rather than pixel-identical.
+   Now that the pill is decoupled from the 48px hit-area minimum, S and M
+   render at their own (smaller) heights again instead of all being 48px. */
+.sizeS {
+  padding-inline: var(--size-space-300);
+  padding-block: var(--size-space-150);
+  gap: var(--size-space-150);
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
+}
+
+.sizeM {
+  padding-inline: var(--size-space-400);
+  padding-block: var(--size-space-200);
+  gap: var(--size-space-150);
+  /* Figma's M label uses the same body/sBold style as S — only the pill's
+     padding and icon size grow between S and M. */
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
+}
+
+.sizeL {
+  padding-inline: var(--size-space-600);
+  padding-block: var(--size-space-300);
+  gap: var(--size-space-200);
+  font-family: var(--typography-text-style-headline-s-font-family);
+  font-weight: var(--typography-text-style-headline-s-font-weight);
+  font-size: var(--typography-text-style-headline-s-font-size);
+  line-height: var(--typography-text-style-headline-s-line-height);
+  letter-spacing: var(--typography-text-style-headline-s-letter-spacing);
+}
+
+/* Loading collapses to an icon-only circle, so it keeps the size's icon
+   token as its only padding reference (matches Figma's loading pills,
+   which shrink to a circle once the label and side icons disappear). */
+.loading {
+  padding: var(--size-space-150);
+}
+
+/* Variants */
+.primary {
+  background: var(--color-interactive-primary);
+  color: var(--color-interactive-on-primary);
+}
+
+.secondary {
+  background: var(--color-background-surface);
+  color: var(--color-interactive-on-secondary);
+}
+
+.tertiary {
+  background: transparent;
+  color: var(--color-text-primary);
+}
+
+/*
+ * A dedicated class rather than the `:disabled` pseudo-class, because
+ * Loading also sets the native `disabled` attribute (so it can't be
+ * clicked) without wanting the Disabled *look* — `:disabled` would have
+ * matched both and made Loading render identically to Disabled.
+ */
+.isDisabled.primary,
+.isDisabled.secondary {
+  background: var(--color-background-surface);
+  color: var(--color-text-disabled);
+}
+
+.isDisabled.tertiary {
+  background: transparent;
+  color: var(--color-text-disabled);
+}
+
+.content {
+  display: inline-flex;
+  align-items: center;
+  gap: inherit;
+}
+
+/* Standard visually-hidden pattern (see ButtonRecord.module.css) — keeps the
+   label as the button's accessible name while Loading hides it visually,
+   screen-reader only text, not a design value, so it isn't token-sourced. */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Spinner — Loading's center icon has no retrievable vector asset (see
+   Button.tsx), so this is a hand-built dashed spinner in currentColor.
+   Sized by the IconSlot wrapping it, not itself. Its rotation speed
+   (0.9s) has no matching motion token — the three duration tokens
+   (120/240/400ms) are one-shot transition speeds, not a continuous loop
+   — so it's a deliberate, flagged exception too. */
+.spinner {
+  width: 100%;
+  height: 100%;
+  animation: button-spin 0.9s linear infinite;
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

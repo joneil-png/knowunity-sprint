@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Greed VF — the product's UI typeface (see docs/design-system.md). Variable
+// font, so one file covers the whole weight range instead of a file per
+// weight; 300–900 matches the axis baked into this file (see .claude
+// skills / design-system for which weights are actually used).
+const greed = localFont({
+  src: "./fonts/GreedCollectionVF-TRIAL.woff2",
+  variable: "--font-greed",
+  weight: "300 900",
+  display: "swap",
+  // Shown in place of Greed for the instant before it's downloaded, so
+  // text is never invisible — the OS's own default UI font on each
+  // platform, falling back to any generic sans-serif.
+  fallback: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
+    "Arial",
+    "sans-serif",
+  ],
 });
 
 export const metadata: Metadata = {
@@ -19,10 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${greed.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
