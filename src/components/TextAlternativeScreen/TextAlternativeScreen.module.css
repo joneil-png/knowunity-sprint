@@ -5,10 +5,13 @@
  * Figma frame: "10. Text alternative" on the "Voice Recall — Draft
  * Screens" canvas. Matched for content and structure, not pixel-for-pixel
  * — see the differences called out in this build's summary (sentence
- * case instead of the draft's all-caps label, headline-before-field
- * ordering instead of the draft's field-before-headline, Button's real
- * Primary styling instead of the draft's off-token brand-violet fill,
- * and no top navigation — same scope cut as every other screen so far).
+ * case instead of the draft's all-caps label, Button's real Primary
+ * styling instead of the draft's off-token brand-violet fill, and no top
+ * navigation — same scope cut as every other screen so far). Element
+ * order (headline, then label, then field) matches the frame's actual
+ * layout — an earlier version of this comment claimed the frame put the
+ * field before the headline, which wasn't true; corrected after checking
+ * the live file's node positions directly.
  *
  * Screen shell repeats RecallScreen.module.css's pattern (including the
  * phone-shaped height cap), matching this project's per-screen convention.
@@ -35,7 +38,7 @@
 }
 
 .label {
-  margin: 0;
+  margin: 0 0 var(--size-space-200);
   color: var(--color-text-tertiary);
   font-family: var(--typography-text-style-caption-m-bold-font-family);
   font-weight: var(--typography-text-style-caption-m-bold-font-weight);
@@ -45,7 +48,7 @@
 }
 
 .prompt {
-  margin: 0 0 var(--size-space-200);
+  margin: 0;
   color: var(--color-text-primary);
   font-family: var(--typography-text-style-headline-m-font-family);
   font-weight: var(--typography-text-style-headline-m-font-weight);

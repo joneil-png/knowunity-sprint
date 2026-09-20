@@ -24,8 +24,8 @@ export function TextAlternativeScreen() {
 
   return (
     <div className={styles.screen}>
-      <p className={styles.label}>Typing instead</p>
       <h1 className={styles.prompt}>{term.prompt}</h1>
+      <p className={styles.label}>Typing instead</p>
       <TextField
         label="Your answer"
         placeholder="Type your answer…"
