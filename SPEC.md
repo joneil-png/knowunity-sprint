@@ -115,6 +115,10 @@ Decided exclusions, not just unbuilt gaps:
 - Manual Skip — removed; two-miss auto-retirement covers "the student doesn't know this." (The Say it back Figma frame still shows a "Skip this, next term" link — confirms this was cut after that frame was drawn, not an oversight when building the screen.)
 - The "Why?" button seen on an earlier draft screen — cut as undocumented scope creep that risked the no-tutoring-conversation rule.
 
+## Open
+
+Nothing outstanding — every item previously listed here (route names, the text-alternative review step, "Back to speaking," Say it back's retry-queueing, the session-end list, Continue-after-pass, and top nav's scope) was decided in conversation and is now reflected in the sections above. Check back here as new gaps surface; treat an empty list as current, not as "nothing was ever open."
+
 ## How the mocked recall behaves
 
 Nothing here is real speech-to-text or real judging — the brief calls for that explicitly ("the recall is mocked... you're designing the experience, not building the engine").
@@ -141,7 +145,3 @@ Nothing here is real speech-to-text or real judging — the brief calls for that
 **Automated checks**, same tooling used throughout this build: open Storybook (`npm run storybook`) and check `Screens/RecallScreen`, `Screens/SessionEndScreen`, `Screens/TextAlternativeScreen`, `Screens/SayItBackScreen`, and each component under `Components/*`. `RecallScreen`'s `FullLoopReachesFirstMissResult` story exercises steps 2–4 above automatically, with an accessibility pass (zero violations as of this spec). Re-run these after any change to `RecallScreen.tsx`, its CSS module, `RecallSessionContext.tsx`, or `useRecallTerm.ts`.
 
 **All four screens are built**, so the full loop is now walkable end to end: idle → record → review → send → processing → partial result → say it back (or Continue) → retry with the badge → pass or another miss → session end (populated only if something was retired) → back out to the existing lesson content (a decided no-op stub, since that destination doesn't exist in this repo).
-
-## Open
-
-Nothing outstanding — every item previously listed here (route names, the text-alternative review step, "Back to speaking," Say it back's retry-queueing, the session-end list, Continue-after-pass, and top nav's scope) was decided in conversation and is now reflected in the sections above. Check back here as new gaps surface; treat an empty list as current, not as "nothing was ever open."
