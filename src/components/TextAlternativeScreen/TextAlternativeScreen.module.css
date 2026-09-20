@@ -40,11 +40,11 @@
 .label {
   margin: 0 0 var(--size-space-200);
   color: var(--color-text-tertiary);
-  font-family: var(--typography-text-style-caption-m-bold-font-family);
-  font-weight: var(--typography-text-style-caption-m-bold-font-weight);
-  font-size: var(--typography-text-style-caption-m-bold-font-size);
-  line-height: var(--typography-text-style-caption-m-bold-line-height);
-  letter-spacing: var(--typography-text-style-caption-m-bold-letter-spacing);
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
 }
 
 .prompt {
