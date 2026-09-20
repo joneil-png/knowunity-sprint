@@ -102,18 +102,24 @@ The transcript itself (shown from Reviewing onward, "You said" + the text) is no
 
 ---
 
-## Out of scope
+## Gaps and cuts
 
-Decided exclusions, not just unbuilt gaps:
+Everything not built as the source material originally showed it, or not built at all, in one place — what it is, why, and whether it's closed or still open.
 
-- Round 1 (multiple choice) — this prototype starts from a hardcoded example term standing in for a real hand-off.
-- Entry / first-run primer, mic permission priming, the native permission prompt's own UI, permission-denied routing.
-- Leaving and resuming a session — no persistence anywhere.
-- Summary screen, XP, retention — the session-end revisit list is the one exception, and it's a minimal list, not a summary.
-- Hint ladder, pausing/resuming a take, transcript editing, an answer-format settings screen.
-- The batched "correct the questions you missed" interstitial.
-- Manual Skip — removed; two-miss auto-retirement covers "the student doesn't know this." (The Say it back Figma frame still shows a "Skip this, next term" link — confirms this was cut after that frame was drawn, not an oversight when building the screen.)
-- The "Why?" button seen on an earlier draft screen — cut as undocumented scope creep that risked the no-tutoring-conversation rule.
+| What | Type | Reason | Status |
+|---|---|---|---|
+| Round 1 (multiple choice) | Cut | This prototype starts from a hardcoded example term standing in for a real hand-off. | Closed |
+| Entry / first-run primer, mic permission priming, the native permission prompt's own UI, permission-denied routing | Cut | Out of scope for this prototype. | Closed |
+| Leaving and resuming a session | Cut | No persistence anywhere in this build. | Closed |
+| Summary screen, XP, retention | Cut | The session-end revisit list is the one exception, and it's a minimal list, not a summary. | Closed |
+| Hint ladder, pausing/resuming a take, transcript editing, an answer-format settings screen | Cut | Out of scope for this prototype. | Closed |
+| The batched "correct the questions you missed" interstitial | Cut | Out of scope for this prototype. | Closed |
+| Manual Skip | Cut | Two-miss auto-retirement covers "the student doesn't know this." The Say it back Figma frame still shows a "Skip this, next term" link — confirms this was cut after that frame was drawn, not an oversight when building the screen. | Closed |
+| The "Why?" button seen on an earlier draft screen | Cut | Undocumented scope creep that risked the no-tutoring-conversation rule. | Closed |
+| Top navigation (close button + progress bar) | Gap | Blocked on `buttonIcon` and `progressIndicator` — real Figma components, not yet built in Storybook. | Open — see the recall loop section |
+| Second-miss result banner as its own visually-distinct variant | Deviation | Decided in sprint-context to be visually distinct with no retry offered; closed instead by reusing `Partial` with different copy — no retry action already reads distinct enough, and a fourth banner variant wasn't worth building for this prototype. | Closed |
+| Session-end list/row treatment | Gap | No Storybook component exists for a tappable list; built inline from tokens instead. | Open — logged in `component-gaps.md`, single screen so far |
+| TextLink escape-action pattern | Gap → resolved | Started as a candidate for the same inline-then-graduate path, but needed on two screens at once while building Text alternative, so it went straight to a real component instead of waiting for a second inline copy. | Closed — `src/components/TextLink/` |
 
 ## Open
 
