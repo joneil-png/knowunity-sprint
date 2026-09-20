@@ -1,0 +1,181 @@
+/*
+ * Every color, spacing, radius, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ *
+ * Scope note: this screen covers only the core per-term loop (idle,
+ * recording, reviewing, processing, result) for one example term. Top
+ * navigation (close button, progress bar), Say it back, the text-fallback
+ * toggle, and session-end are deliberately not part of this pass — kept
+ * out to avoid building components beyond TextField and ProcessingSkeleton
+ * that weren't part of that decision, and to keep this slice reviewable on
+ * its own. Each is a known next step, not a silent gap.
+ *
+ * Side margins use Space/400 (16px) on both edges of a 390px screen, which
+ * is exactly how Layout/Content Width (358px) is derived — so this reuses
+ * the same token relationship FeedbackBanner's "fill the slot" width
+ * assumes, rather than hardcoding 358px directly.
+ */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: var(--size-space-1200) var(--size-space-400) var(--size-space-600);
+  background: var(--color-background-page);
+  gap: var(--size-space-600);
+}
+
+/* On an actual phone, 100vh already is the phone's own screen height, so
+   nothing needs capping. On anything wider than the mobile canvas itself
+   (any real desktop browser window), min-height: 100vh instead stretches
+   this into the full (much taller) window, leaving a large empty gap
+   below the content — this caps it to a phone-shaped height instead,
+   matching Storybook's iPhone 13/14 canvas (390x844). body's own
+   flex centering (src/app/layout.tsx) keeps it centered in the extra
+   space rather than stuck at the top. */
+@media (min-width: 391px) {
+  .screen {
+    min-height: 844px;
+    max-height: 844px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-300);
+  flex: 1;
+}
+
+.retryBadge {
+  margin: 0;
+  align-self: flex-start;
+  padding: var(--size-space-100) var(--size-space-200);
+  border-radius: var(--size-radius-full);
+  background: var(--color-accent-brand-subtle);
+  color: var(--color-accent-brand-on-subtle);
+  font-family: var(--typography-text-style-caption-s-bold-font-family);
+  font-weight: var(--typography-text-style-caption-s-bold-font-weight);
+  font-size: var(--typography-text-style-caption-s-bold-font-size);
+  line-height: var(--typography-text-style-caption-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-caption-s-bold-letter-spacing);
+}
+
+.prompt {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-headline-m-font-family);
+  font-weight: var(--typography-text-style-headline-m-font-weight);
+  font-size: var(--typography-text-style-headline-m-font-size);
+  line-height: var(--typography-text-style-headline-m-line-height);
+  letter-spacing: var(--typography-text-style-headline-m-letter-spacing);
+}
+
+.helper {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-text-style-body-s-regular-font-family);
+  font-weight: var(--typography-text-style-body-s-regular-font-weight);
+  font-size: var(--typography-text-style-body-s-regular-font-size);
+  line-height: var(--typography-text-style-body-s-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-s-regular-letter-spacing);
+}
+
+/* Figma centers this link (textAlignHorizontal: CENTER on "esc: I can't
+   talk right now") — centering lives here, not in TextLink.module.css,
+   since it's this screen's layout choice, not inherent to the link. */
+.textSwitch {
+  align-self: center;
+}
+
+.transcriptCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-150);
+  padding: var(--size-space-400);
+  border-radius: var(--size-radius-400);
+  background: var(--color-background-surface);
+  animation: transcript-enter var(--motion-duration-standard) var(--motion-easing-decelerate);
+}
+
+@keyframes transcript-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-space-200));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .transcriptCard {
+    animation-name: transcript-enter-reduced;
+  }
+
+  @keyframes transcript-enter-reduced {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.transcriptLabel {
+  margin: 0;
+  /* text/tertiary failed AA contrast here (4.34:1 vs 4.5:1 required) against
+     background/surface — text/secondary fixed it, confirmed with Joneil. */
+  color: var(--color-text-secondary);
+  font-family: var(--typography-text-style-caption-m-bold-font-family);
+  font-weight: var(--typography-text-style-caption-m-bold-font-weight);
+  font-size: var(--typography-text-style-caption-m-bold-font-size);
+  line-height: var(--typography-text-style-caption-m-bold-line-height);
+  letter-spacing: var(--typography-text-style-caption-m-bold-letter-spacing);
+  text-transform: uppercase;
+}
+
+.transcriptText {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-body-m-regular-font-family);
+  font-weight: var(--typography-text-style-body-m-regular-font-weight);
+  font-size: var(--typography-text-style-body-m-regular-font-size);
+  line-height: var(--typography-text-style-body-m-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-m-regular-letter-spacing);
+}
+
+/* The morphing "answer area" — record button, review buttons, processing
+   skeleton, and the result banner all share layoutId="answer-surface", so
+   Motion animates the bounding box between whichever of these is mounted. */
+.answerArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.fill {
+  width: 100%;
+}
+
+.recordRow {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--size-space-600);
+}
+
+.reviewActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-300);
+}
+
+.actionArea {
+  display: flex;
+  flex-direction: column;
+}
