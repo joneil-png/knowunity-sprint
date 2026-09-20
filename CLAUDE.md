@@ -27,6 +27,8 @@ Prototype of a voice-based active-recall study step for Knowunity, built in this
 
 When working on UI, use the storybook tools to read the component library before answering or writing anything. Never assume a component prop exists. Query the documentation, and use only props that are documented or shown in a story. If a prop isn't there, stop and ask me.
 
+`component-gaps.md` (repo root) is a running list of things built inline during a screen build instead of as a real component — read it before building a new screen.
+
 ## File map
 
 **Root config** — read only when touching build/lint/TS setup:
