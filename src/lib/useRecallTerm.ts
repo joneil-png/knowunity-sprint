@@ -57,8 +57,12 @@ export function useRecallTerm(term: RecallTerm) {
     setState((s) => ({ ...s, status: 'reviewing', transcript }));
   }, []);
 
+  // Back to idle, not straight into a new take — discarding and
+  // auto-starting the mic in one tap doesn't give the student a beat to
+  // get ready, the same reason the very first take always starts from an
+  // explicit tap rather than auto-recording on arrival.
   const discardAndReRecord = useCallback(() => {
-    setState((s) => ({ ...s, status: 'recording', transcript: '' }));
+    setState((s) => ({ ...s, status: 'idle', transcript: '' }));
   }, []);
 
   // Same entry point for a spoken or typed answer — text and voice get
