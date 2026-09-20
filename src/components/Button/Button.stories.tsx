@@ -34,6 +34,7 @@ const meta = {
     size: { control: 'radio', options: ['S', 'M', 'L'] },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
+    fullWidth: { control: 'boolean' },
   },
   args: {
     children: '1/2 words',
@@ -124,5 +125,18 @@ export const WithIcons: Story = {
     size: 'L',
     leftIcon: <DemoIcon />,
     rightIcon: <DemoIcon />,
+  },
+};
+
+// Bonus, not a Figma variant: fullWidth, a code-only prop for screens where
+// a Button sits directly under a full-width field (Text alternative's
+// Submit) rather than as a standalone content-hugging pill.
+export const FullWidth: Story = {
+  name: 'Primary/L/Default (fullWidth)',
+  args: {
+    variant: 'Primary',
+    size: 'L',
+    fullWidth: true,
+    children: 'Submit',
   },
 };

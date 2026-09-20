@@ -108,6 +108,14 @@
   letter-spacing: var(--typography-text-style-headline-s-letter-spacing);
 }
 
+/* Not a Figma variant — stretches the pill to the hit area's full width
+   (already full-bleed by default under a stretching flex parent) instead
+   of hugging the label, for screens where a Button sits directly under a
+   full-width field. */
+.fullWidth {
+  width: 100%;
+}
+
 /* Loading collapses to an icon-only circle, so it keeps the size's icon
    token as its only padding reference (matches Figma's loading pills,
    which shrink to a circle once the label and side icons disappear). */

@@ -32,7 +32,7 @@ export function TextAlternativeScreen() {
         value={value}
         onChange={setValue}
       />
-      <Button variant="Primary" size="L" onClick={handleSubmit}>
+      <Button variant="Primary" size="L" fullWidth onClick={handleSubmit}>
         Submit
       </Button>
       <TextLink className={styles.backToSpeaking} onClick={handleBackToSpeaking}>

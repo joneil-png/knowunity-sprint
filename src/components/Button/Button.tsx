@@ -25,6 +25,14 @@ export interface ButtonProps
   leftIcon?: ReactNode;
   /** Shown right of the label. Matches Figma's `showRightIcon` (visible whenever an icon is passed). */
   rightIcon?: ReactNode;
+  /**
+   * Stretches the pill to fill its container's width instead of hugging
+   * the label, keeping the label centered. Not a Figma variant — added
+   * for screens where a Button sits directly under a full-width field
+   * (e.g. Text alternative's Submit) and the default content-hugging
+   * pill reads as misaligned against it.
+   */
+  fullWidth?: boolean;
   /** The button's label. Matches Figma's `CTA` text property. */
   children: ReactNode;
 }
@@ -65,6 +73,7 @@ export function Button({
   disabled = false,
   leftIcon,
   rightIcon,
+  fullWidth = false,
   children,
   className,
   ...rest
@@ -87,6 +96,7 @@ export function Button({
     sizeClass,
     disabled && styles.isDisabled,
     loading && styles.loading,
+    fullWidth && styles.fullWidth,
   ]
     .filter(Boolean)
     .join(' ');
