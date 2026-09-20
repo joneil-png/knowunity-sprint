@@ -1,0 +1,63 @@
+/*
+ * Every color, spacing, radius, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ *
+ * Figma frame: "10. Text alternative" on the "Voice Recall — Draft
+ * Screens" canvas. Matched for content and structure, not pixel-for-pixel
+ * — see the differences called out in this build's summary (sentence
+ * case instead of the draft's all-caps label, headline-before-field
+ * ordering instead of the draft's field-before-headline, Button's real
+ * Primary styling instead of the draft's off-token brand-violet fill,
+ * and no top navigation — same scope cut as every other screen so far).
+ *
+ * Screen shell repeats RecallScreen.module.css's pattern (including the
+ * phone-shaped height cap), matching this project's per-screen convention.
+ */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: var(--size-space-1200) var(--size-space-400) var(--size-space-600);
+  background: var(--color-background-page);
+  gap: var(--size-space-300);
+}
+
+@media (min-width: 391px) {
+  .screen {
+    min-height: 844px;
+    max-height: 844px;
+  }
+}
+
+.label {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-family: var(--typography-text-style-caption-m-bold-font-family);
+  font-weight: var(--typography-text-style-caption-m-bold-font-weight);
+  font-size: var(--typography-text-style-caption-m-bold-font-size);
+  line-height: var(--typography-text-style-caption-m-bold-line-height);
+  letter-spacing: var(--typography-text-style-caption-m-bold-letter-spacing);
+}
+
+.prompt {
+  margin: 0 0 var(--size-space-200);
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-headline-m-font-family);
+  font-weight: var(--typography-text-style-headline-m-font-weight);
+  font-size: var(--typography-text-style-headline-m-font-size);
+  line-height: var(--typography-text-style-headline-m-line-height);
+  letter-spacing: var(--typography-text-style-headline-m-letter-spacing);
+}
+
+/* Figma centers this link (textAlignHorizontal: CENTER) — kept here
+   rather than in TextLink.module.css since centering is this screen's
+   layout choice, not an inherent property of the link itself. */
+.backToSpeaking {
+  align-self: center;
+  margin-top: var(--size-space-200);
+}
