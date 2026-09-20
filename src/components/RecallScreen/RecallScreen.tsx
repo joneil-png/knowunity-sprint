@@ -106,10 +106,10 @@ export function RecallScreen() {
 
           {state.status === 'reviewing' ? (
             <motion.div key="review" layoutId="answer-surface" className={styles.reviewActions}>
-              <Button variant="Primary" size="L" onClick={() => send()}>
+              <Button variant="Primary" size="L" fullWidth onClick={() => send()}>
                 Send
               </Button>
-              <Button variant="Secondary" size="L" onClick={discardAndReRecord}>
+              <Button variant="Secondary" size="L" fullWidth onClick={discardAndReRecord}>
                 Discard &amp; re-record
               </Button>
             </motion.div>
