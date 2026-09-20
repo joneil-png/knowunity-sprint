@@ -58,11 +58,11 @@
   border-radius: var(--size-radius-full);
   background: var(--color-accent-brand-subtle);
   color: var(--color-accent-brand-on-subtle);
-  font-family: var(--typography-text-style-caption-s-bold-font-family);
-  font-weight: var(--typography-text-style-caption-s-bold-font-weight);
-  font-size: var(--typography-text-style-caption-s-bold-font-size);
-  line-height: var(--typography-text-style-caption-s-bold-line-height);
-  letter-spacing: var(--typography-text-style-caption-s-bold-letter-spacing);
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
 }
 
 .prompt {
@@ -191,4 +191,5 @@
 .actionArea {
   display: flex;
   flex-direction: column;
+  gap: var(--size-space-300);
 }
