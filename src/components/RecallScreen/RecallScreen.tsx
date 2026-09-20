@@ -54,10 +54,8 @@ export function RecallScreen() {
 
   const result = state.status === 'result' && state.verdict ? resultCopy(state.verdict, state.isRetry) : null;
 
-  // Idle and reviewing only — matches the Figma frame ("esc: I can't talk
-  // right now" appears right after the helper text on the prompt screen)
-  // and the earlier decision that this control isn't offered mid-recording
-  // (stop the take first) or once a verdict is showing.
+  // Idle and reviewing only — the control isn't offered mid-recording (stop
+  // the take first) or once a verdict is showing.
   const showTextSwitch = state.status === 'idle' || state.status === 'reviewing';
 
   // First-miss Partial only (attempt 0) — a second miss is retired, not
@@ -75,12 +73,6 @@ export function RecallScreen() {
             styles come from the CSS module by class, not the tag. */}
         <h2 className={styles.prompt}>{term.prompt}</h2>
         <p className={styles.helper}>Doesn't have to be word for word — explain it your way.</p>
-
-        {showTextSwitch ? (
-          <TextLink className={styles.textSwitch} onClick={() => router.push('/text')}>
-            I can't talk right now
-          </TextLink>
-        ) : null}
 
         {showTranscript ? (
           <div className={styles.transcriptCard}>
@@ -132,6 +124,12 @@ export function RecallScreen() {
           ) : null}
         </AnimatePresence>
       </div>
+
+      {showTextSwitch ? (
+        <TextLink className={styles.textSwitch} onClick={() => router.push('/text')}>
+          I can't talk right now
+        </TextLink>
+      ) : null}
 
       {result ? (
         <div className={styles.actionArea}>
