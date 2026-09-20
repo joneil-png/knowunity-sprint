@@ -59,8 +59,11 @@
 
 /* Figma centers this link (textAlignHorizontal: CENTER) — kept here
    rather than in TextLink.module.css since centering is this screen's
-   layout choice, not an inherent property of the link itself. */
+   layout choice, not an inherent property of the link itself.
+   margin-top: auto pushes it to the bottom of the screen, same as
+   RecallScreen's "I can't talk right now" — consistent placement for
+   this app's escape-action pattern, not just sitting under Submit. */
 .backToSpeaking {
   align-self: center;
-  margin-top: var(--size-space-200);
+  margin-top: auto;
 }
