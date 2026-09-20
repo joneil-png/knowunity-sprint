@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { RecallSessionProvider } from "../lib/RecallSessionContext";
 import "./globals.css";
 
 // Greed VF — the product's UI typeface (see docs/design-system.md). Variable
@@ -33,7 +34,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${greed.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col items-center justify-center">
+        <RecallSessionProvider>{children}</RecallSessionProvider>
+      </body>
     </html>
   );
 }
