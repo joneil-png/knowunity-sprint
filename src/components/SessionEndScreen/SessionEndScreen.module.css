@@ -1,0 +1,108 @@
+/*
+ * Every color, spacing, radius, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ *
+ * No Figma frame exists for this screen — confirmed against the live file
+ * (the "Voice Recall — Draft Screens" canvas has 10 numbered screens, none
+ * of them this one). Built from sprint-context.md's decision text instead.
+ *
+ * Screen shell (.screen) repeats RecallScreen.module.css's pattern rather
+ * than sharing a wrapper component — the established convention here (see
+ * .visuallyHidden, already duplicated per component rather than shared).
+ *
+ * No list/row component exists in Storybook — logged in component-gaps.md.
+ * .row reuses Button's pressed-overlay technique (a ::after layer toggled
+ * on :active) and TextField's :focus-visible outline, rather than inventing
+ * a third interactive-feedback pattern for this one screen.
+ */
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: var(--size-space-1200) var(--size-space-400) var(--size-space-600);
+  background: var(--color-background-page);
+  gap: var(--size-space-600);
+}
+
+/* Same phone-shaped height cap as RecallScreen.module.css — see its
+   comment. Duplicated rather than shared, matching this project's
+   established per-screen convention (see build-screen SKILL.md). */
+@media (min-width: 391px) {
+  .screen {
+    min-height: 844px;
+    max-height: 844px;
+  }
+}
+
+.heading {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-headline-m-font-family);
+  font-weight: var(--typography-text-style-headline-m-font-weight);
+  font-size: var(--typography-text-style-headline-m-font-size);
+  line-height: var(--typography-text-style-headline-m-line-height);
+  letter-spacing: var(--typography-text-style-headline-m-letter-spacing);
+}
+
+.helper {
+  margin: calc(-1 * var(--size-space-300)) 0 0;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-text-style-body-s-regular-font-family);
+  font-weight: var(--typography-text-style-body-s-regular-font-weight);
+  font-size: var(--typography-text-style-body-s-regular-font-size);
+  line-height: var(--typography-text-style-body-s-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-s-regular-letter-spacing);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-300);
+}
+
+.row {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  background: var(--color-background-surface);
+  border-radius: var(--size-radius-200);
+  padding: var(--size-space-400);
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-body-m-regular-font-family);
+  font-weight: var(--typography-text-style-body-m-regular-font-weight);
+  font-size: var(--typography-text-style-body-m-regular-font-size);
+  line-height: var(--typography-text-style-body-m-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-m-regular-letter-spacing);
+}
+
+.row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-interactive-pressed);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.row:active::after {
+  opacity: 1;
+}
+
+.row:focus-visible {
+  outline: var(--size-stroke-heavy-border) solid var(--color-border-focus);
+  outline-offset: var(--size-stroke-heavy-border);
+}
