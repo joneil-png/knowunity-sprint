@@ -54,9 +54,15 @@ export function RecallScreen() {
 
   const result = state.status === 'result' && state.verdict ? resultCopy(state.verdict, state.isRetry) : null;
 
-  // Idle and reviewing only — the control isn't offered mid-recording (stop
-  // the take first) or once a verdict is showing.
-  const showTextSwitch = state.status === 'idle' || state.status === 'reviewing';
+  // sprint-context.md: "An always-visible 'I can't talk right now' button" —
+  // visible through the whole live attempt (idle, recording, reviewing).
+  // Hiding it once a verdict is showing is still right (there's no live
+  // attempt left to switch away from at that point), but excluding
+  // "recording" was a bug, not a decision: it made this control (and the
+  // mic button after it) jump position the moment a take starts, since
+  // hiding it freed up space the layout immediately reflowed into.
+  const showTextSwitch =
+    state.status === 'idle' || state.status === 'recording' || state.status === 'reviewing';
 
   // First-miss Partial only (attempt 0) — a second miss is retired, not
   // offered another rehearsal (sprint-context: "a first miss reveals the
