@@ -57,13 +57,19 @@
   letter-spacing: var(--typography-text-style-headline-m-letter-spacing);
 }
 
+/* Pushes Submit (and everything after it) to the bottom of the screen,
+   same mechanism as RecallScreen's "I can't talk right now" — the field
+   sits right under the headline, and the bottom cluster (Submit, then
+   Back to speaking) sits at the bottom, rather than Submit floating
+   right under the field with a long empty gap below it. */
+.submit {
+  margin-top: auto;
+}
+
 /* Figma centers this link (textAlignHorizontal: CENTER) — kept here
    rather than in TextLink.module.css since centering is this screen's
-   layout choice, not an inherent property of the link itself.
-   margin-top: auto pushes it to the bottom of the screen, same as
-   RecallScreen's "I can't talk right now" — consistent placement for
-   this app's escape-action pattern, not just sitting under Submit. */
+   layout choice, not an inherent property of the link itself. */
 .backToSpeaking {
   align-self: center;
-  margin-top: auto;
+  margin-top: var(--size-space-200);
 }
