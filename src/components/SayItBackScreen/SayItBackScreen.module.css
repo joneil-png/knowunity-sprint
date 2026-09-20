@@ -33,6 +33,16 @@
   }
 }
 
+.prompt {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-headline-m-font-family);
+  font-weight: var(--typography-text-style-headline-m-font-weight);
+  font-size: var(--typography-text-style-headline-m-font-size);
+  line-height: var(--typography-text-style-headline-m-line-height);
+  letter-spacing: var(--typography-text-style-headline-m-letter-spacing);
+}
+
 /* Same card treatment as RecallScreen's transcript card — background/
    surface, radius/400 — for consistency between the two "quoted text in
    a card" patterns across the app, rather than chasing the Figma frame's

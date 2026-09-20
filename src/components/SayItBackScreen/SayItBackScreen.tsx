@@ -30,6 +30,8 @@ export function SayItBackScreen() {
 
   return (
     <div className={styles.screen}>
+      <h1 className={styles.prompt}>{term.prompt}</h1>
+
       <div className={styles.transcriptCard}>
         <p className={styles.label}>Say it back, no pressure</p>
         <p className={styles.answerText}>“{term.answerReveal}”</p>
