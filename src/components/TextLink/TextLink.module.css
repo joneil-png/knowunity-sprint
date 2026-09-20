@@ -5,10 +5,11 @@
  * No Figma component exists for this yet — built directly in Storybook,
  * tokens-only, matching the "esc: ..." text nodes in the Figma draft
  * screens ("esc: I can't talk right now" on screen 1, "esc: Back to
- * speaking" on screen 10) exactly: text/tertiary, underlined, ~13px
- * semibold. Those are plain TEXT layers in Figma, not a component or a
- * button lookalike — this matches that, using caption/mBold as the
- * closest token (12px semibold) to the lookalike's 13px semibold.
+ * speaking" on screen 10): text/tertiary, underlined. Originally set to
+ * caption/mBold (12px) as the closest token to the lookalike's 13px
+ * semibold, but that read as too small in practice — bumped one step to
+ * body/sBold (15px) instead, still bold and tertiary so it stays visually
+ * secondary to the surrounding content.
  */
 
 .link {
@@ -19,11 +20,11 @@
   cursor: pointer;
   color: var(--color-text-tertiary);
   text-decoration: underline;
-  font-family: var(--typography-text-style-caption-m-bold-font-family);
-  font-weight: var(--typography-text-style-caption-m-bold-font-weight);
-  font-size: var(--typography-text-style-caption-m-bold-font-size);
-  line-height: var(--typography-text-style-caption-m-bold-line-height);
-  letter-spacing: var(--typography-text-style-caption-m-bold-letter-spacing);
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
 }
 
 .link:focus-visible {
