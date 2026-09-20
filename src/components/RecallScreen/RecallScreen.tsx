@@ -86,6 +86,9 @@ export function RecallScreen() {
         <AnimatePresence mode="wait" initial={false}>
           {state.status === 'idle' || state.status === 'recording' ? (
             <motion.div key="record" layoutId="answer-surface" className={styles.recordRow}>
+              <p className={styles.recordLabel}>
+                {state.status === 'recording' ? 'Tap to stop' : 'Tap to record'}
+              </p>
               <ButtonRecord
                 state={state.status === 'recording' ? 'Recording' : 'Default'}
                 onClick={() =>
