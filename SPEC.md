@@ -41,7 +41,7 @@ Also in scope, not yet started: top navigation chrome (close button, progress ba
 
 ### 2. Text alternative
 
-**Built.** Files: `src/components/TextAlternativeScreen/` (.tsx + .module.css + .stories.tsx, Storybook: `Screens/TextAlternativeScreen`), mounted at `/text` via `src/app/text/page.tsx`. Figma frame: "10. Text alternative" on the "Voice Recall — Draft Screens" canvas — matched for content and structure, not pixel-for-pixel. Differences from the frame: sentence case ("Typing instead"), not the frame's all-caps, per design-system.md §4; the question headline comes before the text field, not after, matching this app's own reading order rather than the frame's field-before-headline arrangement (undocumented anywhere, looks like an unreviewed draft quirk); Submit uses `Button`'s real Primary styling, not the frame's brand-violet fill, which violates design-system.md §4's restriction on `accent/brand/*`; no top navigation, same scope cut as every other screen.
+**Built.** Files: `src/components/TextAlternativeScreen/` (.tsx + .module.css + .stories.tsx, Storybook: `Screens/TextAlternativeScreen`), mounted at `/text` via `src/app/text/page.tsx`. Figma frame: "10. Text alternative" on the "Voice Recall — Draft Screens" canvas — matched for content and structure, not pixel-for-pixel. Differences from the frame: sentence case ("Typing instead"), not the frame's all-caps, per design-system.md §4; Submit uses `Button`'s real Primary styling, not the frame's brand-violet fill, which violates design-system.md §4's restriction on `accent/brand/*`; no top navigation, same scope cut as every other screen. Element order (headline, then the "Typing instead" label, then the field) now matches the frame's actual layout — an earlier version of this line claimed the frame put the field before the headline, which checking the live file's node positions directly showed wasn't true.
 
 **Reached from:** the idle screen or the review screen, via "I can't talk right now" — now wired on both (see screen 4).
 
@@ -60,7 +60,7 @@ Also in scope, not yet started: top navigation chrome (close button, progress ba
 
 ### 3. Say it back
 
-**Built.** Files: `src/components/SayItBackScreen/` (.tsx + .module.css + .stories.tsx, Storybook: `Screens/SayItBackScreen`), mounted at `/say-it-back` via `src/app/say-it-back/page.tsx`. Figma frame: "7. Say it back" on the "Voice Recall — Draft Screens" canvas — matched for content and structure, not pixel-for-pixel. Differences from the frame: "Say it back, no pressure" reads in sentence case, not the frame's all-caps, per design-system.md §4; the frame's "Skip this, next term" escape link is omitted — manual Skip was removed earlier in this build and is explicitly out of scope, so this isn't a new decision, just a frame element that predates it; the quoted text shows the term's full `answerReveal`, not the frame's shortened quote, since there's only one canonical reveal string in the data model.
+**Built.** Files: `src/components/SayItBackScreen/` (.tsx + .module.css + .stories.tsx, Storybook: `Screens/SayItBackScreen`), mounted at `/say-it-back` via `src/app/say-it-back/page.tsx`. Figma frame: "7. Say it back" on the "Voice Recall — Draft Screens" canvas — matched for content and structure, not pixel-for-pixel. Differences from the frame: "Say it back, no pressure" reads in sentence case, not the frame's all-caps, per design-system.md §4; the frame's "Skip this, next term" escape link is omitted — manual Skip was removed earlier in this build and is explicitly out of scope, so this isn't a new decision, just a frame element that predates it; the quoted text shows the term's full `answerReveal`, not the frame's shortened quote, since there's only one canonical reveal string in the data model. The frame's persistent question headline was missing from the first pass of this build (not caught until a direct Figma comparison) — now added above the transcript card, matching the frame.
 
 Along the way, fixed the gap SPEC.md already flagged: `finishSayItBack` (`src/lib/useRecallTerm.ts`) now actually queues the retry (shares a `queueRetry` helper with `continueAfterResult`'s first-miss branch) instead of just resetting to idle.
 
@@ -68,7 +68,7 @@ Along the way, fixed the gap SPEC.md already flagged: `finishSayItBack` (`src/li
 
 **States:** one take, no verdict. Recording is local state on this screen (`useState`), not the shared status — `startSayItBack` stays unused by design, so a browser-back mid-take falls back to the last real state (the Partial banner) rather than an unhandled `sayItBack` status on `RecallScreen`.
 
-**Components:** `ButtonRecord` (`src/components/ButtonRecord/ButtonRecord.tsx`, Storybook: `Components/ButtonRecord`), same `Default`/`Recording` states as the main loop's mic button.
+**Components:** `ButtonRecord` (`src/components/ButtonRecord/ButtonRecord.tsx`, Storybook: `Components/ButtonRecord`), same `Default`/`Recording` states as the main loop's mic button, plus the question headline (`term.prompt`, plain markup styled like `RecallScreen`'s `.prompt`) and a "Tap to record"/"Tap to stop" label above the button.
 
 **What the student can do:** record one take.
 
@@ -87,8 +87,8 @@ One screen, several internal states — no route change between them. The record
 
 | State | Components used | Student can | Leads to |
 |---|---|---|---|
-| **Idle** | `ButtonRecord` (`state="Default"`) + `TextLink` ("I can't talk right now") | Tap to start recording, or tap the text link. | Recording (same screen), or `/text`. |
-| **Recording** | `ButtonRecord` (`state="Recording"`) | Tap to stop. | Reviewing (same screen). |
+| **Idle** | `ButtonRecord` (`state="Default"`) + "Tap to record" label + `TextLink` ("I can't talk right now") | Tap to start recording, or tap the text link. | Recording (same screen), or `/text`. |
+| **Recording** | `ButtonRecord` (`state="Recording"`) + "Tap to stop" label | Tap to stop. | Reviewing (same screen). |
 | **Reviewing** | Plain transcript display (not a library component — see below) + `Button` (`variant="Secondary" size="L"`, "Discard & re-record") + `Button` (`variant="Primary" size="L"`, "Send") + `TextLink` ("I can't talk right now") | Discard & re-record, Send, or the text link. | Discard → back to Recording, transcript cleared. Send → Processing. Text link → `/text`. |
 | **Processing** | `ProcessingSkeleton` (`src/components/ProcessingSkeleton/ProcessingSkeleton.tsx`, Storybook: `Components/ProcessingSkeleton`), fixed 2.5s | none — this state is not interactive. | Result, automatically, after the delay. |
 | **Result — pass, first try** | `FeedbackBanner` (`variant="Success"`) + `Button` (`variant="Primary" size="L"`, "Continue") | Tap Continue. | `/session-end`, which immediately redirects back to `/` since nothing was retired — the correct behavior for a pass, not a bug. There's still no real "next term" once a real multi-term session exists; today, one term's session simply ends. |
