@@ -1,0 +1,109 @@
+/*
+ * Every color, spacing, and radius value here is a CSS custom property from
+ * build/css/tokens.css (generated from tokens/tokens.json). The one
+ * exception is the shimmer sweep's duration (1.6s): no motion token covers
+ * a continuous loop — the three motion.duration tokens are one-shot
+ * transition speeds, not loops — the same documented gap as Button's
+ * spinner (0.9s) and ButtonRecord's pulse rings (2s). Flagged, not hidden.
+ *
+ * No Figma component exists for this yet — see TextField.module.css's
+ * header comment for why.
+ *
+ * The shape mirrors feedbackBanner deliberately: same outer padding, gap,
+ * and radius, and a title row sized to feedbackBanner's iconSlot 250 plus
+ * headline-S line height. This container sits in the exact screen position
+ * feedbackBanner occupies once the verdict resolves (sprint-context.md:
+ * "review, processing and verdict are one screen ... the bottom area swaps
+ * from buttons to thinking skeleton to banner"), so the two shapes need to
+ * line up for a clean handoff between them.
+ */
+
+.skeleton {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-space-300);
+  padding: var(--size-space-400);
+  border-radius: var(--size-radius-400);
+  background: var(--color-background-surface);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--size-space-200);
+}
+
+/* Base bone shimmer — a light sweep crossing a dim placeholder block. The
+   sweep color (background/stacking) is the system's own "additive white
+   layer for subtle lift", reused here as a highlight rather than inventing
+   a new one. The block's resting color (interactive/disabled) is "fill for
+   a non-interactive control signaling it's unavailable" — an exact
+   semantic match for content that isn't ready yet. */
+.bone {
+  display: block;
+  border-radius: var(--size-radius-100);
+  background-color: var(--color-interactive-disabled);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-background-stacking) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+.iconBone {
+  width: var(--size-icon-250);
+  height: var(--size-icon-250);
+  border-radius: var(--size-radius-full);
+  flex-shrink: 0;
+}
+
+.titleBone {
+  width: 40%;
+  height: var(--typography-text-style-headline-s-line-height);
+}
+
+.bodyBoneFull {
+  width: 100%;
+  height: var(--typography-text-style-body-s-regular-line-height);
+}
+
+.bodyBoneShort {
+  width: 65%;
+  height: var(--typography-text-style-body-s-regular-line-height);
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Same philosophy as feedbackBanner's "fade only" and buttonRecord's
+     "rings don't animate, fill/glyph carry status": the shimmer sweep
+     stops, the static dim blocks alone still read as "content loading". */
+  .bone {
+    animation: none;
+    background-image: none;
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

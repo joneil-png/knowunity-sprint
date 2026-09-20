@@ -1,0 +1,61 @@
+/*
+ * Every color, spacing, radius, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ * Nothing in this file is invented.
+ *
+ * No Figma component exists for this yet — built directly in Storybook,
+ * tokens-only, by deliberate decision (Joneil chose "Storybook + tokens
+ * only, Figma stays out of it" when this was raised). Figma is not the
+ * source of truth for this component the way it is for Button,
+ * ButtonRecord, and FeedbackBanner; this file and TextField.tsx are, until
+ * that's revisited.
+ */
+
+.field {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+  resize: none;
+  border: var(--size-stroke-border) solid var(--color-border-default);
+  border-radius: var(--size-radius-200);
+  background: var(--color-background-input);
+  padding: var(--size-space-400);
+  color: var(--color-text-primary);
+  font-family: var(--typography-text-style-body-m-regular-font-family);
+  font-weight: var(--typography-text-style-body-m-regular-font-weight);
+  font-size: var(--typography-text-style-body-m-regular-font-size);
+  line-height: var(--typography-text-style-body-m-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-m-regular-letter-spacing);
+  transition: border-color var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.textarea::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Focus — same outline treatment as Button's :focus-visible pill (see
+   Button.module.css), reused rather than inventing a second focus
+   convention for this system. */
+.textarea:focus-visible {
+  outline: var(--size-stroke-heavy-border) solid var(--color-border-focus);
+  outline-offset: var(--size-stroke-heavy-border);
+  border-color: var(--color-border-focus);
+}
+
+/* Standard visually-hidden pattern (see Button.module.css / ButtonRecord.module.css). */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -105,6 +105,8 @@ version. The two sprint components are documented in full in section 5.
 | A progress bar for a recall session | `progressIndicator` | **Confirmed, narrowly.** All 7 real instances are Primary/thickness-16, at 0% or 25%. Coral and thickness-24 are documented, unused. It only has five fixed steps (0/25/50/75/100), it can't show an arbitrary in-between percentage, a 7-question session doesn't map cleanly onto it as built. |
 | A toast / transient system message | `snackbar` | **Confirmed concept** (Joneil: "looks like a toast"). Zero real instances anywhere. Its action slot is built from a `chips` instance, not a `button`, don't assume it taps like a button without checking that's intentional. |
 | A header, sized to the content's importance | `textBlock` | **Confirmed concept** (Joneil: "basically like the header variations depending on the type of information, importance maybe"). Zero real instances anywhere, so the specific size-to-content mapping (which of XL/L/M/S for which kind of content) isn't decided. Don't guess that mapping without checking with Joneil first. In practice it's commonly paired with an `iconSlot` or an illustration sitting beside the title, that pairing shows up repeatedly even without a confirmed `textBlock` instance itself. |
+| Type or paste a recall answer instead of speaking it | `TextField` | **Built in this session, Storybook only — no Figma component, by deliberate decision.** See section 5.4. |
+| The calm "thinking" wait between review and verdict | `ProcessingSkeleton` | **Built in this session, Storybook only — no Figma component, by deliberate decision.** See section 5.5. |
 
 Three components here (`appBar`, `snackbar`, `textBlock`) have a confirmed
 real-world concept but zero confirmed real-world instance. That gap is real,
@@ -218,11 +220,23 @@ group in `tokens.json` in lowercase kebab-case (`size.space.400`,
 
 ## 5. Components built in the voice recall sprint
 
-All of these live on the **"Components"** page of the Figma file, each in a
-section named after it. Descriptions and state notes below are quoted from
-Figma exactly as written (component descriptions and Dev Mode annotations).
-If they ever differ from this file, Figma is current and this file needs
-updating. The reasoning behind each decision is in `component-plans.md`.
+Sections 5.1–5.3 (`buttonRecord`, `feedbackBanner`, the Phosphor icons) live
+on the **"Components"** page of the Figma file, each in a section named after
+it. Descriptions and state notes for those three are quoted from Figma
+exactly as written (component descriptions and Dev Mode annotations). If
+they ever differ from this file, Figma is current and this file needs
+updating.
+
+Sections 5.4–5.5 (`TextField`, `ProcessingSkeleton`) do **not** live in
+Figma. They were built directly in Storybook, tokens-only, after an explicit
+decision in conversation with Joneil to keep Figma out of this pass (raised
+because building components outside the design system risks exactly the
+"lookalike" drift already visible in the Figma draft screens' hand-drawn
+text field and buttons — accepted anyway, as a deliberate, known gap rather
+than an oversight). Their descriptions below are written directly, not
+quoted from Figma, since there's nothing in Figma to quote. Code (the
+component and its `.module.css`) is the source of truth for these two until
+that's revisited.
 
 ### 5.1 `buttonRecord`
 
@@ -340,6 +354,99 @@ variants. Place them through `iconSlot`'s instance swap, never loose.
 | `check-circle` | check, tick, confirm, correct, success, circle | `Icon (Stroke)` | `feedbackBanner` Success, Earned |
 | `info` | info, information, help, hint, partial, circle | `Icon (Stroke)` | `feedbackBanner` Partial |
 | `x` | x, close, cancel, dismiss, remove, exit | `Icon (Stroke)` | Nothing yet. Intended for close and cancel actions. |
+
+### 5.4 `TextField` (Storybook only)
+
+**What it is:** the multi-line field for typing a recall answer instead of
+speaking it.
+
+**States and options:** no variant axis. One visual treatment, plus a real
+`:focus-visible` state (not a prop, matching how `button`'s Pressed is real
+`:active`, not a prop). There is no separate "filled" look — typed text
+simply replaces the placeholder, the same way `button`'s Pressed and
+`buttonRecord`'s states are the only variants that are "real and visibly
+different."
+
+**Props:**
+
+| Property | Type | Notes |
+|---|---|---|
+| `label` | string, required | Accessible name, rendered as a visually-hidden `<label>`. The visible surface is placeholder-only. |
+| `placeholder` | string | Visible hint text, `text/tertiary`. |
+| `value` / `onChange` | string / function | Controlled. |
+| `rows` | number, default 3 | A typed recall answer is a sentence or two, not an unbounded document. |
+
+**When to reach for it:** the text-alternative screen (reached via "I can't
+talk right now"), and the review screen's text-switch affordance.
+
+**What not to do:** don't add a visible label above this field without
+checking with Joneil first — placeholder-only is a decision, not an
+oversight. Don't build a Disabled or error/success validation state on
+spec — nothing in the current flow needs one; `color.border.error`,
+`color.border.success`, and `color.text.error` already exist in
+`tokens.json` anticipating a future need, left unbuilt on purpose.
+
+**Anatomy and tokens** (values in `tokens.json`):
+
+```
+field                    width: 100%
+  textarea                border: border/default at Stroke/Border
+                          radius: Radius/200
+                          fill: background/input
+                          padding: Space/400
+                          text: Greed/Body M Regular, color text/primary
+                          placeholder color: text/tertiary
+                          focus-visible: outline border/focus at Stroke/Heavy Border,
+                                         offset Stroke/Heavy Border, border-color border/focus
+```
+
+### 5.5 `ProcessingSkeleton` (Storybook only)
+
+**What it is:** the calm "thinking" placeholder shown between stopping a
+recall answer and Knowie's verdict — voice-ux-reference.md principle 6's "a
+skeleton/animated state, not a dead spinner."
+
+**States and options:** no variant axis. Its shape deliberately mirrors
+`feedbackBanner` — same outer padding, gap, and radius, and a title row
+sized to `feedbackBanner`'s `iconSlot` 250 plus headline-S line height —
+because sprint-context.md locks review, processing, and verdict into one
+screen where "the bottom area swaps from buttons to thinking skeleton to
+banner." This component and `feedbackBanner` occupy the same spot in
+sequence, so their shapes have to line up for a clean handoff.
+
+**Props:**
+
+| Property | Type | Notes |
+|---|---|---|
+| `label` | string, required | Screen-reader announcement of the wait, visually hidden. The shimmering blocks are `aria-hidden`, decorative only — matches `feedbackBanner`'s `role="status"` pattern in the same screen position. |
+
+**When to reach for it:** under the transcript, in the same `middleContent`
+position `feedbackBanner` will occupy once the verdict resolves.
+
+**What not to do:** don't reuse this for any other loading state without
+checking the shape still makes sense — it's sized to match
+`feedbackBanner` specifically, not built as a generic spinner replacement.
+
+**Gaps:** the shimmer sweep's duration (1.6s) has no backing motion token —
+the three `motion.duration` tokens are one-shot transition speeds, not
+loops. Same category of flagged, un-tokened gap as `button`'s spinner
+(0.9s) and `buttonRecord`'s pulse rings (2s).
+
+**Anatomy and tokens** (values in `tokens.json`):
+
+```
+skeleton                 padding: Space/400; gap: Space/300; radius: Radius/400
+                          fill: background/surface
+  Title Row               gap: Space/200
+    iconBone              Icon/250 square, radius Radius/Full
+    titleBone             width 40%, height headline-S line-height
+  bodyBoneFull            width 100%, height body-S-regular line-height
+  bodyBoneShort           width 65%, height body-S-regular line-height
+
+  each bone:              base fill interactive/disabled
+                          shimmer highlight background/stacking (un-tokened 1.6s sweep)
+                          radius Radius/100 (Radius/Full on iconBone only)
+```
 
 ---
 
