@@ -78,7 +78,7 @@ export function RecallScreen() {
             skipping a level. No visual change: this component's font
             styles come from the CSS module by class, not the tag. */}
         <h2 className={styles.prompt}>{term.prompt}</h2>
-        <p className={styles.helper}>Doesn't have to be word for word — explain it your way.</p>
+        <p className={styles.helper}>No need to get it word for word — explain it your way.</p>
 
         {showTranscript ? (
           <div className={styles.transcriptCard}>
