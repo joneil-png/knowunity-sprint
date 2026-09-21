@@ -92,17 +92,9 @@ export function RecallScreen() {
         <AnimatePresence mode="wait" initial={false}>
           {state.status === 'idle' || state.status === 'recording' ? (
             <motion.div key="record" layoutId="answer-surface" className={styles.recordRow}>
-              {/* "standby" mascot during Recording specifically, decided
-                  directly with Joneil, replacing the "Tap to stop"
-                  instruction with an "I'm listening" moment instead. Idle
-                  stays instruction-only; the mic's own color/glyph change
-                  plus this mascot together signal "recording" without
-                  needing the tap instruction repeated. */}
-              {state.status === 'recording' ? (
-                <MascotMoment pose="standby" label="I'm listening…" />
-              ) : (
-                <p className={styles.recordLabel}>Tap to record</p>
-              )}
+              <p className={styles.recordLabel}>
+                {state.status === 'recording' ? 'Tap to stop' : 'Tap to record'}
+              </p>
               <ButtonRecord
                 state={state.status === 'recording' ? 'Recording' : 'Default'}
                 onClick={() =>
@@ -123,18 +115,6 @@ export function RecallScreen() {
             </motion.div>
           ) : null}
 
-          {state.status === 'processing' ? (
-            <motion.div key="processing" layoutId="answer-surface" className={styles.fill}>
-              {/* "thinking" reaction art, decided directly with Joneil,
-                  replacing the ProcessingSkeleton shimmer this screen used
-                  to show here. announce: this appears asynchronously with
-                  no user action right before it, unlike Recording's
-                  MascotMoment which mounts in the same click that already
-                  triggers ButtonRecord's own aria-live announcement. */}
-              <MascotMoment pose="thinking" label="Checking your answer…" announce />
-            </motion.div>
-          ) : null}
-
           {result ? (
             <motion.div key="result" layoutId="answer-surface" className={styles.fill}>
               <FeedbackBanner
@@ -147,6 +127,37 @@ export function RecallScreen() {
           ) : null}
         </AnimatePresence>
       </div>
+
+      {/* Independent of the answer area's own layoutId group on purpose —
+          the mic button and review/result actions stay anchored to a
+          fixed bottom position (decided with Joneil: he didn't want the
+          button moving when recording starts, or the banner/buttons
+          floating mid-screen), while the mascot is the one thing that
+          should read as centered on the screen. Coupling them into the
+          same shared-layout group was fighting those two goals against
+          each other. Absolutely positioned + pointer-events: none so it
+          never blocks a tap on the button or the text-switch link. */}
+      <AnimatePresence mode="wait" initial={false}>
+        {state.status === 'recording' || state.status === 'processing' ? (
+          <motion.div
+            key={state.status}
+            className={styles.mascotOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {state.status === 'recording' ? (
+              <MascotMoment pose="standby" label="I'm listening…" />
+            ) : (
+              // announce: this appears asynchronously with no user action
+              // right before it, unlike Recording's mascot, which mounts
+              // in the same click that already triggers ButtonRecord's
+              // own aria-live announcement.
+              <MascotMoment pose="thinking" label="Checking your answer…" announce />
+            )}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       {showTextSwitch ? (
         <TextLink className={styles.textSwitch} onClick={() => router.push('/text')}>
