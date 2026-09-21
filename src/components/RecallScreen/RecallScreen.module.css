@@ -133,12 +133,11 @@
   /* text/tertiary failed AA contrast here (4.34:1 vs 4.5:1 required) against
      background/surface — text/secondary fixed it, confirmed with Joneil. */
   color: var(--color-text-secondary);
-  font-family: var(--typography-text-style-caption-m-bold-font-family);
-  font-weight: var(--typography-text-style-caption-m-bold-font-weight);
-  font-size: var(--typography-text-style-caption-m-bold-font-size);
-  line-height: var(--typography-text-style-caption-m-bold-line-height);
-  letter-spacing: var(--typography-text-style-caption-m-bold-letter-spacing);
-  text-transform: uppercase;
+  font-family: var(--typography-text-style-body-s-bold-font-family);
+  font-weight: var(--typography-text-style-body-s-bold-font-weight);
+  font-size: var(--typography-text-style-body-s-bold-font-size);
+  line-height: var(--typography-text-style-body-s-bold-line-height);
+  letter-spacing: var(--typography-text-style-body-s-bold-letter-spacing);
 }
 
 .transcriptText {
