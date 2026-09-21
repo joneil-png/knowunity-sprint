@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "tokens": "style-dictionary build --config style-dictionary.config.mjs",
+    "check:tokens": "! grep -rnE '#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})\\b' src --include='*.ts' --include='*.tsx' --include='*.css'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic"

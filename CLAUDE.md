@@ -6,7 +6,7 @@ Prototype of a voice-based active-recall study step for Knowunity, built in this
 
 ## Hard rules
 
-- Design values and component rules: `docs/design-system.md` is law; `tokens/tokens.json` is the only source of values. Never invent either.
+- Design values and component rules: `docs/design-system.md` is law; `tokens/tokens.json` is the only source of values. Never invent either. Run `npm run check:tokens` after building or editing any screen or component — it fails and names the file/line if a raw hex color leaked into `src/`.
 - Product constraints for the feature (voice-in/text-out, push-to-talk, mobile-iOS-only, mocked recall, etc.): `docs/design-brief.md`, "Hard constraints".
 - Voice-UX principles to apply to any recall-loop screen: `docs/voice-ux-reference.md`.
 - Recall-loop decisions already made: `docs/sprint-context.md`. Treat as settled, not open for redesign.
