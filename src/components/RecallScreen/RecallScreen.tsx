@@ -161,7 +161,7 @@ export function RecallScreen() {
 
       {showTextSwitch ? (
         <TextLink className={styles.textSwitch} onClick={() => router.push('/text')}>
-          I can't talk right now
+          I can&apos;t talk right now
         </TextLink>
       ) : null}
 

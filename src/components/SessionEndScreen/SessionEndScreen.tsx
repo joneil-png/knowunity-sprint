@@ -26,7 +26,7 @@ export function SessionEndScreen() {
     <div className={styles.screen}>
       <h1 className={styles.heading}>Terms to revisit</h1>
       <p className={styles.helper}>
-        These didn't land this time — no penalty, just something to look at again.
+        These didn&apos;t land this time — no penalty, just something to look at again.
       </p>
       <ul className={styles.list}>
         {retiredTerms.map((term) => (
