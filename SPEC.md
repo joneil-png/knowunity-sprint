@@ -89,7 +89,7 @@ One screen, several internal states — no route change between them. The record
 |---|---|---|---|
 | **Idle** | `ButtonRecord` (`state="Default"`) + "Tap to record" label + `TextLink` ("I can't talk right now") | Tap to start recording, or tap the text link. | Recording (same screen), or `/text`. |
 | **Recording** | `ButtonRecord` (`state="Recording"`) + "Tap to stop" label | Tap to stop. | Reviewing (same screen). |
-| **Reviewing** | Plain transcript display (not a library component — see below) + `Button` (`variant="Secondary" size="L"`, "Discard & re-record") + `Button` (`variant="Primary" size="L"`, "Send") + `TextLink` ("I can't talk right now") | Discard & re-record, Send, or the text link. | Discard → back to Recording, transcript cleared. Send → Processing. Text link → `/text`. |
+| **Reviewing** | Plain transcript display (not a library component — see below) + `Button` (`variant="Secondary" size="L"`, "Discard & re-record") + `Button` (`variant="Primary" size="L"`, "Send") + `TextLink` ("I can't talk right now") | Discard & re-record, Send, or the text link. | Discard → back to Idle, transcript cleared (originally went straight to Recording, auto-starting the mic with no beat to get ready — fixed). Send → Processing. Text link → `/text`. |
 | **Processing** | `ProcessingSkeleton` (`src/components/ProcessingSkeleton/ProcessingSkeleton.tsx`, Storybook: `Components/ProcessingSkeleton`), fixed 2.5s | none — this state is not interactive. | Result, automatically, after the delay. |
 | **Result — pass, first try** | `FeedbackBanner` (`variant="Success"`) + `Button` (`variant="Primary" size="L"`, "Continue") | Tap Continue. | `/session-end`, which immediately redirects back to `/` since nothing was retired — the correct behavior for a pass, not a bug. There's still no real "next term" once a real multi-term session exists; today, one term's session simply ends. |
 | **Result — pass, after retry** | `FeedbackBanner` (`variant="Earned"`) + Continue | Tap Continue. | Same as above. |
@@ -140,7 +140,7 @@ Nothing here is real speech-to-text or real judging — the brief calls for that
 
 1. Land on `/` — see the example term's prompt and an idle mic button.
 2. Tap the mic → button switches to Recording (pulse ring). Tap again → lands on the review screen with a transcript and Send / Discard & re-record.
-3. Tap Discard & re-record → back to a fresh Recording take, transcript cleared.
+3. Tap Discard & re-record → back to Idle, transcript cleared. Tap the mic again when ready to re-record.
 4. Tap Send → Processing (shimmering skeleton) for ~2.5s → a `Partial` banner ("Almost there") with the revealed answer, since the example term's first scripted outcome is `partial`.
 5. Tap Continue → back to idle, now showing the "Previous mistake" badge (confirms the retry-queueing logic ran).
 6. Record → stop → Send again → after another ~2.5s, an `Earned` banner this time (second scripted outcome is `pass`, and `isRetry` is now true) — confirms the retry path resolves differently from a first-try pass.
