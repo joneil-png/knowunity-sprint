@@ -71,7 +71,11 @@ export const Reviewing: Story = {
     const stopButton = await canvas.findByRole('button', { name: 'Stop recording' });
     await userEvent.click(stopButton);
     await expect(canvas.getByText(/You said/i)).toBeInTheDocument();
-    await expect(canvas.getByRole('button', { name: 'Send' })).toBeInTheDocument();
+    // findByRole, not getByRole — the record row and review actions are
+    // different layoutId-keyed elements under AnimatePresence mode="wait",
+    // so Send doesn't mount until the outgoing element's exit animation
+    // finishes. Real timing, not a fixed delay to wait out.
+    await expect(await canvas.findByRole('button', { name: 'Send' })).toBeInTheDocument();
   },
 };
 

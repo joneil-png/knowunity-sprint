@@ -48,7 +48,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--size-space-300);
-  flex: 1;
 }
 
 .retryBadge {
@@ -150,12 +149,19 @@
   letter-spacing: var(--typography-text-style-body-m-regular-letter-spacing);
 }
 
-/* The morphing "answer area" — record button, review buttons, processing
-   skeleton, and the result banner all share layoutId="answer-surface", so
-   Motion animates the bounding box between whichever of these is mounted. */
+/* The morphing "answer area" — record button, review buttons, the
+   processing mascot, and the result banner all share
+   layoutId="answer-surface", so Motion animates the bounding box between
+   whichever of these is mounted. flex: 1 + centering (moved here from
+   .content, which is now natural-height) means whichever of these is
+   mounted centers in the space left under the prompt/transcript, instead
+   of the prompt block swallowing that space and pushing everything else
+   down near the bottom. */
 .answerArea {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  justify-content: center;
 }
 
 .fill {
