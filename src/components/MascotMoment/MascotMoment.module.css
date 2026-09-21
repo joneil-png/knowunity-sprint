@@ -1,0 +1,38 @@
+/*
+ * Every color, spacing, and typography value here is a CSS custom
+ * property from build/css/tokens.css (generated from tokens/tokens.json).
+ *
+ * No Figma component exists for this — mascotSlot (design-system.md §2)
+ * is a real Figma component, but it's fixed to the "standby" pose with no
+ * confirmed instance-swap, and nothing under that name exists in
+ * Storybook. Graduated from two inline copies (Processing's "thinking"
+ * mascot, then Recording's "standby" one) per this project's own
+ * inline-then-graduate convention — see component-gaps.md.
+ *
+ * No outer padding by design: the parent (.answerArea, RecallScreen.module.css)
+ * centers whatever's mounted in the remaining vertical space, so this
+ * only needs to handle the internal image-to-label spacing.
+ */
+
+.mascotMoment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-space-300);
+}
+
+.image {
+  width: var(--size-illustration-1500);
+  height: auto;
+}
+
+.label {
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-family: var(--typography-text-style-body-s-regular-font-family);
+  font-weight: var(--typography-text-style-body-s-regular-font-weight);
+  font-size: var(--typography-text-style-body-s-regular-font-size);
+  line-height: var(--typography-text-style-body-s-regular-line-height);
+  letter-spacing: var(--typography-text-style-body-s-regular-letter-spacing);
+}

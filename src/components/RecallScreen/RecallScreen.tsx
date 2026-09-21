@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '../Button/Button';
 import { ButtonRecord } from '../ButtonRecord/ButtonRecord';
 import { FeedbackBanner, type FeedbackBannerVariant } from '../FeedbackBanner/FeedbackBanner';
+import { MascotMoment } from '../MascotMoment/MascotMoment';
 import { TextLink } from '../TextLink/TextLink';
 import { useRecallSession } from '../../lib/RecallSessionContext';
 import type { Verdict } from '../../lib/useRecallTerm';
@@ -91,9 +92,17 @@ export function RecallScreen() {
         <AnimatePresence mode="wait" initial={false}>
           {state.status === 'idle' || state.status === 'recording' ? (
             <motion.div key="record" layoutId="answer-surface" className={styles.recordRow}>
-              <p className={styles.recordLabel}>
-                {state.status === 'recording' ? 'Tap to stop' : 'Tap to record'}
-              </p>
+              {/* "standby" mascot during Recording specifically, decided
+                  directly with Joneil, replacing the "Tap to stop"
+                  instruction with an "I'm listening" moment instead. Idle
+                  stays instruction-only; the mic's own color/glyph change
+                  plus this mascot together signal "recording" without
+                  needing the tap instruction repeated. */}
+              {state.status === 'recording' ? (
+                <MascotMoment pose="standby" label="I'm listening…" />
+              ) : (
+                <p className={styles.recordLabel}>Tap to record</p>
+              )}
               <ButtonRecord
                 state={state.status === 'recording' ? 'Recording' : 'Default'}
                 onClick={() =>
@@ -116,16 +125,13 @@ export function RecallScreen() {
 
           {state.status === 'processing' ? (
             <motion.div key="processing" layoutId="answer-surface" className={styles.fill}>
-              {/* No mascotSlot component in Storybook (design-system.md
-                  documents it as Figma-only, fixed to the "standby" pose,
-                  no confirmed instance-swap) — decided directly with
-                  Joneil to use the "thinking" reaction art here instead of
-                  the shimmering skeleton this replaced. Logged in
-                  component-gaps.md. */}
-              <div className={styles.processingMascot} role="status">
-                <img src="/images/thinking.png" alt="" className={styles.mascotImage} />
-                <p className={styles.processingLabel}>Checking your answer…</p>
-              </div>
+              {/* "thinking" reaction art, decided directly with Joneil,
+                  replacing the ProcessingSkeleton shimmer this screen used
+                  to show here. announce: this appears asynchronously with
+                  no user action right before it, unlike Recording's
+                  MascotMoment which mounts in the same click that already
+                  triggers ButtonRecord's own aria-live announcement. */}
+              <MascotMoment pose="thinking" label="Checking your answer…" announce />
             </motion.div>
           ) : null}
 
