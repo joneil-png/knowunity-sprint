@@ -13,7 +13,7 @@ import { useRecallTerm, type RecallTerm } from './useRecallTerm';
 // full loop — including the "Previous mistake" badge and the Earned
 // banner — is reachable from a single term.
 export const EXAMPLE_TERM: RecallTerm = {
-  prompt: 'What role does chlorophyll play in photosynthesis?',
+  prompt: 'What role does chlorophyll play during photosynthesis?',
   answerReveal:
     'Chlorophyll absorbs sunlight, which powers the conversion of CO2 and water into glucose and oxygen.',
   outcomes: ['partial', 'pass'],
