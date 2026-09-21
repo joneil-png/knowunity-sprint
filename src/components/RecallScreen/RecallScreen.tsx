@@ -142,11 +142,11 @@ export function RecallScreen() {
 
       {result ? (
         <div className={styles.actionArea}>
-          <Button variant="Primary" size="L" onClick={handleContinue}>
+          <Button variant="Primary" size="L" fullWidth onClick={handleContinue}>
             Continue
           </Button>
           {showSayItBack ? (
-            <Button variant="Secondary" size="L" onClick={() => router.push('/say-it-back')}>
+            <Button variant="Secondary" size="L" fullWidth onClick={() => router.push('/say-it-back')}>
               Say it back
             </Button>
           ) : null}
