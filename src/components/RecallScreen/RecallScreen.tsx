@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '../Button/Button';
 import { ButtonRecord } from '../ButtonRecord/ButtonRecord';
 import { FeedbackBanner, type FeedbackBannerVariant } from '../FeedbackBanner/FeedbackBanner';
-import { ProcessingSkeleton } from '../ProcessingSkeleton/ProcessingSkeleton';
 import { TextLink } from '../TextLink/TextLink';
 import { useRecallSession } from '../../lib/RecallSessionContext';
 import type { Verdict } from '../../lib/useRecallTerm';
@@ -117,7 +116,16 @@ export function RecallScreen() {
 
           {state.status === 'processing' ? (
             <motion.div key="processing" layoutId="answer-surface" className={styles.fill}>
-              <ProcessingSkeleton label="Checking your answer…" />
+              {/* No mascotSlot component in Storybook (design-system.md
+                  documents it as Figma-only, fixed to the "standby" pose,
+                  no confirmed instance-swap) — decided directly with
+                  Joneil to use the "thinking" reaction art here instead of
+                  the shimmering skeleton this replaced. Logged in
+                  component-gaps.md. */}
+              <div className={styles.processingMascot} role="status">
+                <img src="/images/thinking.png" alt="" className={styles.mascotImage} />
+                <p className={styles.processingLabel}>Checking your answer…</p>
+              </div>
             </motion.div>
           ) : null}
 
