@@ -1,9 +1,15 @@
 @import "tailwindcss";
 @import "../../build/css/tokens.css";
 
+/* This app is dark-only by design (mobile-iOS-only, per design-brief.md) —
+   no light variant exists anywhere in tokens.json. The create-next-app
+   starter's light/dark toggle and raw hex values are gone; body uses the
+   same background/page token every screen shell uses, so the space around
+   the phone-shaped screen on wider viewports matches the screen itself
+   instead of a leftover near-black that isn't actually navy-950. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-background-page);
+  --foreground: var(--color-text-primary);
 }
 
 @theme inline {
@@ -11,13 +17,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-greed);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
